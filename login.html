@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Portal</title>
+    <!-- Caminho relativo para a sua imagem local -->
+    <link rel="icon" type="image/png" href="img/Logo01.png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- Link para o arquivo HTML da página inicial -->
+        <a href="index.html" class="flex items-center justify-center">
+            <!-- Caminho relativo para a sua imagem local, mantendo estilos originais -->
+            <img src="img/Logo01_sem_fundo.png" alt="Logo sem texto" style="width:300px; height:300px; object-fit:contain; background:transparent; margin-right:10px;">
+        </a>
+    </div>
+    <div class="bg-white p-8 pt-0 -mt-4 rounded-2xl shadow-xl w-full max-w-sm mx-auto">
+        <h1 class="text-3xl font-bold text-center text-slate-800 mb-6">Login</h1>
+        
+        <!-- Adicionado ID para você interceptar o submit com JavaScript/Supabase -->
+        <form id="login-form" class="space-y-4">
+            <div>
+                <label for="username" class="block text-sm font-medium text-slate-700">Usuário:</label>
+                <input type="text" id="username" name="username" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-slate-700">Senha:</label>
+                <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+            </div>
+            
+            <!-- Div de erro oculta por padrão (classe 'hidden'). Exiba-a via JavaScript quando o login falhar -->
+            <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative text-sm" role="alert">
+                <span class="block sm:inline" id="error-text">Nome de usuário ou senha inválidos.</span>
+            </div>
+            
+            <div>
+                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                    Entrar
+                </button>
+            </div>
+        </form>
+        <div class="mt-4 text-center text-sm">
+            <!-- Links apontando para os arquivos HTML diretos -->
+            <a href="cadastro.html" class="font-medium text-blue-600 hover:text-blue-500">
+                Não tem uma conta? Cadastre-se
+            </a>
+            <br>
+            <a href="reset_senha.html" class="mt-2 block font-medium text-slate-600 hover:text-slate-500">
+                Esqueceu a senha?
+            </a>
+        </div>
+    </div>
+</body>
+</html>

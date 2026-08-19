@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha - Portal</title>
+    <!-- Caminho relativo para a sua imagem local -->
+    <link rel="icon" type="image/png" href="assets/image/Logo01.png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- Link para o arquivo HTML da página inicial -->
+        <a href="index.html" class="flex items-center justify-center">
+            <!-- Caminho relativo para a sua imagem local -->
+            <img src="img/Logo01_sem_fundo.png" alt="Logo sem texto" style="width:300px; height:300px; object-fit:contain; background:transparent; margin-right:10px;">
+        </a>
+    </div>
+    
+    <div class="bg-white p-8 pt-0 -mt-4 rounded-2xl shadow-xl w-full max-w-sm mx-auto">
+        <h1 class="text-3xl font-bold text-center text-slate-800 mb-2">Recuperar Senha</h1>
+        <p class="text-sm text-center text-slate-600 mb-6">Confirme seus dados abaixo. geraremos uma nova senha nessa mesma tela.</p>
+        <!-- Formulário atualizado com os 3 campos -->
+        <form id="reset-form" class="space-y-4">
+
+            <div>
+                <label for="ra" class="block text-sm font-medium text-slate-700">Registro Acadêmico (RA):</label>
+                <input type="text" id="ra" name="ra" placeholder="Digite seu RA" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+            </div>
+            
+            <div>
+                <label for="nome" class="block text-sm font-medium text-slate-700">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+            </div>
+
+            <div>
+                <label for="username" class="block text-sm font-medium text-slate-700">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+            </div>
+
+            <div>
+                <label for="email" class="block text-sm font-medium text-slate-700">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+            </div>
+            
+            <!-- Div de erro oculta por padrão (classe 'hidden') -->
+            <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative text-sm" role="alert">
+                <span class="block sm:inline" id="error-text">Os dados informados não conferem. Verifique e tente novamente.</span>
+            </div>
+
+            <!-- Div de sucesso oculta por padrão (classe 'hidden') -->
+            <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded relative text-sm" role="alert">
+                <span class="block sm:inline" id="success-text">Link de recuperação enviado com sucesso! Verifique sua caixa de entrada.</span>
+            </div>
+            
+            <div class="pt-2">
+                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                    Validar e Enviar Link
+                </button>
+            </div>
+        </form>
+        
+        <div class="mt-6 text-center text-sm">
+            <a href="login.html" class="font-medium text-blue-600 hover:text-blue-500">
+                Lembrou sua senha? Voltar ao Login
+            </a>
+        </div>
+    </div>
+</body>
+</html>

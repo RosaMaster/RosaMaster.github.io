@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTEUDO</title>
+    <!-- Caminho relativo para a sua imagem local -->
+    <link rel="icon" type="image/png" href="img/Logo01.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Caminho relativo para o CSS -->
+    <link rel="stylesheet" href="assets/css/global.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- HEADER -->
+    <header class="shadow-sm py-0 mb-1" style="background-color: rgba(34, 40, 49, 1.0); border-width: 1px; border-style: solid; border-color: #222831;">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- Incluir imagem de logo -->
+            <div class="d-flex align-items-center gap-2">
+                <a href="conteudo.html" class="text-decoration-none text-primary me-3">
+                    <img src="img/Logo01_sem_fundo.png" alt="Logo sem texto" style="width:150px; height:150px; object-fit:contain; background:transparent; margin-right:10px;">
+                </a>
+                <h1 class="h3 mb-0 text-white" style="font-size: xxx-large;"><b>A R C H I V U M</b></h1>
+            </div>
+            <nav style="font-size: 1.35rem;">
+                <a href="index.html" class="text-decoration-none text-primary me-3"><b>HOME</b></a>
+                <a href="conteudo.html" class="text-decoration-none text-secondary me-3"><b>CONTEÚDO</b></a>
+                <a href="politica_termos.html" class="text-decoration-none text-secondary me-3"><b>TERMOS DE USO</b></a>
+                <!-- Adicionado ID para acionar supabase.auth.signOut() futuramente via JS -->
+                <a href="login.html" id="btn-logout" class="btn btn-danger" style="font-size: 1.1rem;"><b>LOGOUT</b></a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container flex-grow-1 mt-2 mb-5">
+        <!-- Dividir essa sessao em 2 partes menu lateral esquerdo, arquivo pdf centro -->
+        <div class="d-flex">
+            <div class="flex-shrink-0 p-3 bg-white" style="width: 280px; height: 600px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <div class="form-group mb-3">
+                    <label for="disciplinaSelect"><b>Selecione a disciplina:</b></label>
+                    <select class="form-control" id="disciplinaSelect">
+                        <option value="default">Escolha uma Disciplina</option>
+                        <option value="fundamentos_matematicos">Fundamentos Matemáticos</option>
+                        <option value="ingles">Inglês</option>
+                        <option value="pensamento_computacional">Pensamento Computacional</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="aulaSelect"><b>Selecione a aula:</b></label>
+                    <select class="form-control" id="aulaSelect">
+                        <option value="aula1">Aula 1</option>
+                        <option value="aula2">Aula 2</option>
+                        <option value="aula3">Aula 3</option>
+                        <option value="aula4">Aula 4</option>
+                        <option value="aula5">Aula 5</option>
+                        <option value="aula6">Aula 6</option>
+                        <option value="aula7">Aula 7</option>
+                        <option value="aula8">Aula 8</option>
+                        <option value="aula9">Aula 9</option>
+                        <option value="aula10">Aula 10</option>
+                        <option value="aula11">Aula 11</option>
+                        <option value="aula12">Aula 12</option>
+                        <option value="aula13">Aula 13</option>
+                        <option value="aula14">Aula 14</option>
+                        <option value="aula15">Aula 15</option>
+                        <option value="aula16">Aula 16</option>
+                        <option value="aula17">Aula 17</option>
+                        <option value="aula18">Aula 18</option>
+                        <option value="aula19">Aula 19</option>
+                        <option value="aula20">Aula 20</option>
+                        <option value="aula21">Aula 21</option>
+                        <option value="aula22">Aula 22</option>
+                    </select>
+                </div>
+                <br><br>
+                <div>
+                    <!-- Atualizado para o caminho local padrão -->
+                    <a id="pdfLink" href="pdf/default/default.pdf" target="_blank" class="btn btn-warning" style="font-size: 1.1rem;"><b>Abrir PDF</b></a>
+                    <br><br>
+                    <a id="videoLink" href="https://www.youtube.com/watch?v=KxppXrcfMBA" target="_blank" class="btn btn-warning" style="font-size: 1.1rem;"><b>Abrir VÍDEO</b></a>
+                </div>
+            </div>
+            <div class="mt-6" style="width: 1000px; height: 150px;">
+                <!-- Atualizado para o caminho local padrão -->
+                <embed id="pdfEmbed" src="pdf/default/default.pdf" type="application/pdf" width="110%" height="600px" />
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .marquee-container {
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+    }
+    .marquee-text {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 12s linear infinite;
+    }
+    @keyframes marquee {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+    </style>
+    
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white mt-auto py-4">
+        <div class="text-center p-3 text-white">
+            <b>A R C H I V U M</b> © 2026 Copyright
+        </div>
+    </footer>
+
+    <!-- SCRIPT JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script>
+    // Caminhos convertidos de {% static %} para paths relativos de HTML
+    const pdfMap = {
+        fundamentos_matematicos: {
+            aula1: "pdf/fundamentos_matematicos/Aula1.pdf",
+            aula2: "pdf/fundamentos_matematicos/Aula2.pdf",
+            aula3: "pdf/fundamentos_matematicos/Aula3.pdf",
+            aula4: "pdf/fundamentos_matematicos/Aula4.pdf",
+            aula5: "pdf/fundamentos_matematicos/Aula5.pdf",
+            aula6: "pdf/fundamentos_matematicos/Aula6.pdf",
+            aula7: "pdf/fundamentos_matematicos/Aula7.pdf",
+            aula8: "pdf/fundamentos_matematicos/Aula8.pdf",
+            aula9: "pdf/fundamentos_matematicos/Aula9.pdf",
+            aula10: "pdf/fundamentos_matematicos/Aula10.pdf",
+            aula11: "pdf/fundamentos_matematicos/Aula11.pdf",
+            aula12: "pdf/fundamentos_matematicos/Aula12.pdf",
+            aula13: "pdf/fundamentos_matematicos/Aula13.pdf",
+            aula14: "pdf/fundamentos_matematicos/Aula14.pdf",
+            aula15: "pdf/fundamentos_matematicos/Aula15.pdf",
+            aula16: "pdf/fundamentos_matematicos/Aula16.pdf",
+            aula17: "pdf/fundamentos_matematicos/Aula17.pdf",
+            aula18: "pdf/fundamentos_matematicos/Aula18.pdf",
+            aula19: "pdf/fundamentos_matematicos/Aula19.pdf",
+            aula20: "pdf/fundamentos_matematicos/Aula20.pdf",
+            aula21: "pdf/fundamentos_matematicos/Aula21.pdf",
+            aula22: "pdf/fundamentos_matematicos/Aula22.pdf"
+        },
+        ingles: {
+            aula1: "pdf/ingles/Aula1.pdf",
+            aula2: "pdf/ingles/Aula2.pdf",
+            aula3: "pdf/ingles/Aula3.pdf",
+            aula4: "pdf/ingles/Aula4.pdf",
+            aula5: "pdf/ingles/Aula5.pdf",
+            aula6: "pdf/ingles/Aula6.pdf",
+            aula7: "pdf/ingles/Aula7.pdf",
+            aula8: "pdf/ingles/Aula8.pdf",
+            aula9: "pdf/ingles/Aula9.pdf",
+            aula10: "pdf/ingles/Aula10.pdf",
+            aula11: "pdf/ingles/Aula11.pdf",
+            aula12: "pdf/ingles/Aula12.pdf",
+            aula13: "pdf/ingles/Aula13.pdf",
+            aula14: "pdf/ingles/Aula14.pdf",
+            aula15: "pdf/ingles/Aula15.pdf",
+            aula16: "pdf/ingles/Aula16.pdf",
+            aula17: "pdf/ingles/Aula17.pdf",
+            aula18: "pdf/not_found/not_found.pdf",
+            aula19: "pdf/not_found/not_found.pdf",
+            aula20: "pdf/not_found/not_found.pdf",
+            aula21: "pdf/not_found/not_found.pdf",
+            aula22: "pdf/not_found/not_found.pdf"
+        },
+        pensamento_computacional: {
+            aula1: "pdf/pensamento_computacional/Aula1.pdf",
+            aula2: "pdf/pensamento_computacional/Aula2.pdf",
+            aula3: "pdf/pensamento_computacional/Aula3.pdf",
+            aula4: "pdf/pensamento_computacional/Aula4.pdf",
+            aula5: "pdf/pensamento_computacional/Aula5.pdf",
+            aula6: "pdf/pensamento_computacional/Aula6.pdf",
+            aula7: "pdf/pensamento_computacional/Aula7.pdf",
+            aula8: "pdf/pensamento_computacional/Aula8.pdf",
+            aula9: "pdf/pensamento_computacional/Aula9.pdf",
+            aula10: "pdf/pensamento_computacional/Aula10.pdf",
+            aula11: "pdf/pensamento_computacional/Aula11.pdf",
+            aula12: "pdf/pensamento_computacional/Aula12.pdf",
+            aula13: "pdf/pensamento_computacional/Aula13.pdf",
+            aula14: "pdf/pensamento_computacional/Aula14.pdf",
+            aula15: "pdf/pensamento_computacional/Aula15.pdf",
+            aula16: "pdf/pensamento_computacional/Aula16.pdf",
+            aula17: "pdf/pensamento_computacional/Aula17.pdf",
+            aula18: "pdf/pensamento_computacional/Aula18.pdf",
+            aula19: "pdf/not_found/not_found.pdf",
+            aula20: "pdf/not_found/not_found.pdf",
+            aula21: "pdf/not_found/not_found.pdf",
+            aula22: "pdf/not_found/not_found.pdf"
+        }
+    };
+    
+    const videoMap = {
+        fundamentos_matematicos: {
+            aula1: "https://www.youtube.com/watch?v=KxppXrcfMBA",
+            aula2: "https://www.youtube.com/watch?v=KxppXrcfMBA",
+            aula3: "https://www.youtube.com/watch?v=KxppXrcfMBA"
+            // ...adicione links para cada aula
+        },
+        ingles: {
+            aula1: "https://www.youtube.com/watch?v=KxppXrcfMBA",
+            aula2: "https://www.youtube.com/watch?v=KxppXrcfMBA",
+            aula3: "https://www.youtube.com/watch?v=KxppXrcfMBA"
+            // ...adicione links para cada aula
+        },
+        pensamento_computacional: {
+            aula1: "https://www.youtube.com/watch?v=KxppXrcfMBA",
+            aula2: "https://www.youtube.com/watch?v=KxppXrcfMBA",
+            aula3: "https://www.youtube.com/watch?v=KxppXrcfMBA"
+            // ...adicione links para cada aula
+        }
+    };
+    
+    const disciplinaSelect = document.getElementById('disciplinaSelect');
+    const aulaSelect = document.getElementById('aulaSelect');
+    const pdfLink = document.getElementById('pdfLink');
+    const pdfEmbed = document.getElementById('pdfEmbed');
+    const videoLink = document.getElementById('videoLink');
+    
+    function updateLinks() {
+        const disciplina = disciplinaSelect.value;
+        const aula = aulaSelect.value;
+        
+        // Trava de segurança: se estiver no "default", volta para o PDF vazio/padrão e encerra a função
+        if (disciplina === 'default') {
+            pdfLink.href = "assets/pdf/default/default.pdf";
+            pdfEmbed.src = "assets/pdf/default/default.pdf";
+            return;
+        }
+
+        const pdfUrl = pdfMap[disciplina][aula];
+        const videoUrl = (videoMap[disciplina] && videoMap[disciplina][aula]) ? videoMap[disciplina][aula] : "https://www.youtube.com/watch?v=KxppXrcfMBA";
+        
+        if (pdfUrl) {
+            pdfLink.href = pdfUrl;
+            pdfEmbed.src = pdfUrl;
+        }
+        if (videoLink) {
+            videoLink.href = videoUrl;
+        }
+    }
+    
+    if (disciplinaSelect && aulaSelect && pdfLink && pdfEmbed && videoLink) {
+        disciplinaSelect.addEventListener('change', updateLinks);
+        aulaSelect.addEventListener('change', updateLinks);
+    }
+    </script>
+
+</body>
+</html>
