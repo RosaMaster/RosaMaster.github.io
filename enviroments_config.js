@@ -1,7 +1,7 @@
-const SUPABASE_CONFIG = {
+const VARIABLES_CONFIG = {
     url: 'https://SEU-PROJETO.supabase.co',
     anonKey: 'SUA-CHAVE-ANON-PUBLICA',
-    bucket: 'materiais',
+    tabela: 'materiais',
     redirectUrl: 'https://seusite.github.io/login.html',
     environment: 'production'
 };

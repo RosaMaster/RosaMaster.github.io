@@ -41,7 +41,7 @@
         <br>
         <h1 class="text-3xl font-bold mb-6 text-center">POLÍTICA E TERMOS DE USO</h1>
 
-        <p class="text-sm text-slate-600 text-center mb-8">Última atualização: 18 de Setembro de 2026</p>
+        <p class="text-sm text-slate-600 text-center mb-8">Última atualização: 20 de Setembro de 2026</p>
         
         <section class="mb-6">
             <h2 class="text-xl font-semibold mb-2">1.0 INFO</h2>
@@ -77,10 +77,10 @@
             <h2 class="text-xl font-semibold mb-2">3.1 CADASTRO USUÁRIO</h2>
             <p class="text-slate-700 text-justify">Para acessar o conteúdo do Portal, é necessário realizar um cadastro prévio. O usuário deve fornecer informações verdadeiras e atualizadas durante o processo de registro. Conforme itens listados abaixo:</p>
             <ul class="list-disc list-inside text-justify">
-                <li>Nome</li>
                 <li>RA - Registro Acadêmico</li>
-                <li>Email Pessoal</li>
-                <li>Email Acadêmico</li>
+                <li>Nome</li>
+                <li>Username</li>
+                <li>Email</li>
                 <li>Curso</li>
                 <li>Senha</li>
             </ul>
@@ -101,12 +101,23 @@
         </section>
 
         <section class="mb-6">
-            <h2 class="text-xl font-semibold mb-2">3.2 MATERIAL DISPONIBILIZADO NO FORMATO PDF</h2>
+            <h2 class="text-xl font-semibold mb-2">3.2 RECUPERAR SENHA</h2>
+            <p class="text-slate-700 text-justify">Para realizar o reset da senha cadastrada, será necessário confirmar as seguintes informações abaixo. Após a verificação será gerado uma nova senha de acesso na tela de recuperar senha:</p>
+            <ul class="list-disc list-inside text-justify">
+                <li>RA - Registro Acadêmico</li>
+                <li>Nome</li>
+                <li>Username</li>
+                <li>Email</li>
+            </ul>
+        </section>
+
+        <section class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">3.3 MATERIAL DISPONIBILIZADO NO FORMATO PDF</h2>
             <p class="text-slate-700 text-justify">O conteúdo no formato de PDF pode ser baixado e/ou visualizado para fins de estudo individual, sem fins comerciais.</p>
         </section>
 
         <section class="mb-6">
-            <h2 class="text-xl font-semibold mb-2">3.3 MATERIAL DISPONIBILIZADO ATRAVÉS DE LINKS EXTERNOS</h2>
+            <h2 class="text-xl font-semibold mb-2">3.4 MATERIAL DISPONIBILIZADO ATRAVÉS DE LINKS EXTERNOS</h2>
             <p class="text-slate-700 text-justify">Este Portal de Conteúdo fornece links para vídeos hospedados na plataforma Youtube através da url www.youtube.com. A responsabilidade pelo acesso, visualização e uso do conteúdo no YouTube é regida pelos termos de serviço e políticas de privacidade da própria plataforma. O Portal de Conteúdo não se responsabiliza por qualquer conteúdo, anúncio ou funcionalidade do YouTube.</p>
         </section>
 
@@ -150,6 +161,9 @@
         </div>
     </footer>
 
+    <!-- SCRIPT JS -->
+    <script src="enviroments_config.js"></script>
+    <script src="javascript/supabaseService.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
