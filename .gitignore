@@ -31,4 +31,5 @@ coverage/
 sql/
 
 # Teste
+enviroments_config.js
 enviroments_config_teste.js
