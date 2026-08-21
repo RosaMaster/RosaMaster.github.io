@@ -10,6 +10,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
+        .help-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            margin-left: 4px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background-color: #1769c2;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1;
+            vertical-align: middle;
+            cursor: help;
+        }
+        .help-button:hover,
+        .help-button:focus-visible {
+            background-color: #0d4f94;
+        }
     </style>
 </head>
 <body>
@@ -21,29 +43,29 @@
         </a>
     </div>
     
-    <div class="bg-white p-8 pt-0 -mt-4 rounded-2xl shadow-xl w-full max-w-sm mx-auto">
-        <h1 class="text-3xl font-bold text-center text-slate-800 mb-2">Recuperar Senha</h1>
-        <p class="text-sm text-center text-slate-600 mb-6">Confirme seus dados abaixo. geraremos uma nova senha nessa mesma tela.</p>
+    <div class="bg-white p-8 pt-0 -mt-4 rounded-2xl shadow-xl w-full max-w-md mx-auto">
+        <h1 class="text-3xl font-bold text-center text-slate-800 mb-2">Recuperar Senha</h1><br>
+        <p class="text-sm text-center text-slate-600 mb-6">Confirme seus dados abaixo. geraremos uma nova senha nessa mesma tela.</p><br>
         <!-- Formulário atualizado com os 3 campos -->
         <form id="reset-form" class="space-y-4">
 
             <div>
-                <label for="ra" class="block text-sm font-medium text-slate-700">Registro Acadêmico (RA):</label>
+                <label for="ra" class="block text-sm font-medium text-slate-700">Registro Acadêmico (RA): <button type="button" class="help-button" title="Informe o número do seu Registro Acadêmico (RA)." aria-label="Ajuda sobre Registro Acadêmico">?</button></label>
                 <input type="text" id="ra" name="ra" placeholder="Digite seu RA" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
             </div>
             
             <div>
-                <label for="nome" class="block text-sm font-medium text-slate-700">Nome Completo:</label>
+                <label for="nome" class="block text-sm font-medium text-slate-700">Nome Completo: <button type="button" class="help-button" title="Informe seu nome completo, sem abreviações e sem caracteres especiais." aria-label="Ajuda sobre Nome Completo">?</button></label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
             </div>
 
             <div>
-                <label for="username" class="block text-sm font-medium text-slate-700">Username:</label>
+                <label for="username" class="block text-sm font-medium text-slate-700">Username: <button type="button" class="help-button" title="Informe o mesmo nome de usuário usado no cadastro." aria-label="Ajuda sobre Username">?</button></label>
                 <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
             </div>
 
             <div>
-                <label for="email" class="block text-sm font-medium text-slate-700">E-mail:</label>
+                <label for="email" class="block text-sm font-medium text-slate-700">E-mail: <button type="button" class="help-button" title="Informe o mesmo endereço de e-mail usado no cadastro." aria-label="Ajuda sobre E-mail">?</button></label>
                 <input type="email" id="email" name="email" placeholder="seu@email.com" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
             </div>
             
@@ -59,7 +81,7 @@
             
             <div class="pt-2">
                 <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
-                    Validar e Enviar Link
+                    Gerar Nova Senha
                 </button>
             </div>
         </form>

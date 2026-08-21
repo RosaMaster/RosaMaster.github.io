@@ -10,12 +10,14 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         .form-container {
-            max-width: 420px;
+            width: min(520px, calc(100% - 32px));
+            max-width: none;
             margin: 48px auto 48px auto;
             background: #fff;
             border-radius: 15px;
             box-shadow: 0 8px 32px 0 rgba(31,38,135,0.14);
             padding: 32px 36px;
+            box-sizing: border-box;
         }
         @media (max-width: 480px) {
             .form-container { padding: 16px 8px; }
@@ -23,6 +25,28 @@
         .form-container h2 {
             font-size: 2rem; font-weight: bold; color: #222831; text-align: center;
             margin-bottom: 28px;
+        }
+        .help-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            margin-left: 4px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background-color: #1769c2;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1;
+            vertical-align: middle;
+            cursor: help;
+        }
+        .help-button:hover,
+        .help-button:focus-visible {
+            background-color: #0d4f94;
         }
         .marquee-container {
             overflow: hidden;
@@ -41,7 +65,7 @@
         }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <!-- HEADER -->
 <header class="shadow-sm py-0 mb-1" style="background-color: #222831; border-width: 1px; border-style: solid; border-color: #222831;">
@@ -75,38 +99,44 @@
     <form id="form-cadastro" autocomplete="off">
         
         <div class="mb-3">
-            <label for="registro_academico" class="form-label">Registro Acadêmico (RA):</label>
+            <label for="registro_academico" class="form-label">Registro Acadêmico (RA): <button type="button" class="help-button" title="Informe o número do seu Registro Acadêmico (RA)." aria-label="Ajuda sobre Registro Acadêmico">?</button></label>
             <!-- Tags de input nativas substituindo o Django Forms -->
             <input type="text" id="registro_academico" name="registro_academico" class="form-control" required>
             <div id="erro-ra" class="text-danger small d-none"></div>
         </div>
         
         <div class="mb-3">
-            <label for="nome" class="form-label">Nome Completo:</label>
+            <label for="nome" class="form-label">Nome Completo: <button type="button" class="help-button" title="Informe seu nome completo, sem abreviações e sem caracteres especiais." aria-label="Ajuda sobre Nome Completo">?</button></label>
             <input type="text" id="nome" name="nome" class="form-control" required>
             <div id="erro-nome" class="text-danger small d-none"></div>
         </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Username: <button type="button" class="help-button" title="Crie um nome de usuário para acessar a plataforma. Evite espaços e acentos." aria-label="Ajuda sobre Username">?</button></label>
+            <input type="text" id="username" name="username" class="form-control" required>
+            <div id="erro-username" class="text-danger small d-none"></div>
+        </div>
         
         <div class="mb-3">
-            <label for="email" class="form-label">E-mail:</label>
+            <label for="email" class="form-label">E-mail: <button type="button" class="help-button" title="Informe um endereço de e-mail válido ao qual você tenha acesso." aria-label="Ajuda sobre E-mail">?</button></label>
             <input type="email" id="email" name="email" class="form-control" required>
             <div id="erro-email" class="text-danger small d-none"></div>
         </div>
         
         <div class="mb-3">
-            <label for="curso" class="form-label">Curso:</label>
+            <label for="curso" class="form-label">Curso: <button type="button" class="help-button" title="Informe o nome do seu curso na UNIVESP." aria-label="Ajuda sobre Curso">?</button></label>
             <input type="text" id="curso" name="curso" class="form-control" required>
             <div id="erro-curso" class="text-danger small d-none"></div>
         </div>
         
         <div class="mb-3">
-            <label for="senha" class="form-label">Senha:</label>
+            <label for="senha" class="form-label">Senha: <button type="button" class="help-button" title="Use de 8 a 20 caracteres, com pelo menos um caractere especial, um número e uma letra maiúscula. Não use espaços, palavras comuns, sequências de teclas, números sequenciais ou números repetidos." aria-label="Regras para a senha">?</button></label>
             <input type="password" id="senha" name="senha" class="form-control" required>
             <div id="erro-senha" class="text-danger small d-none"></div>
         </div>
         
         <div class="mb-3">
-            <label for="confirmar_senha" class="form-label">Confirmar Senha:</label>
+            <label for="confirmar_senha" class="form-label">Confirmar Senha: <button type="button" class="help-button" title="Digite novamente a mesma senha informada no campo anterior." aria-label="Ajuda sobre Confirmar Senha">?</button></label>
             <input type="password" id="confirmar_senha" name="confirmar_senha" class="form-control" required>
             <div id="erro-confirmar-senha" class="text-danger small d-none"></div>
         </div>
@@ -120,7 +150,7 @@
 </div>
 
 <!-- FOOTER -->
-<footer class="bg-dark text-white mt-5 py-4">
+<footer class="bg-dark text-white mt-auto py-4">
     <div class="text-center p-3 text-white">
         <b>A R C H I V U M</b> © 2026 Copyright
     </div>
