@@ -24,7 +24,7 @@
     <div class="bg-white p-8 pt-0 -mt-4 rounded-2xl shadow-xl w-full max-w-md mx-auto">
         <h1 class="text-3xl font-bold text-center text-slate-800 mb-6">Login</h1>
         
-        <!-- Adicionado ID para você interceptar o submit com JavaScript/Supabase -->
+        <!-- Formulário interceptado via JavaScript -->
         <form id="login-form" class="space-y-4">
             <div>
                 <label for="username" class="block text-sm font-medium text-slate-700">Usuário:</label>
@@ -35,13 +35,18 @@
                 <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
             </div>
             
-            <!-- Div de erro oculta por padrão (classe 'hidden'). Exiba-a via JavaScript quando o login falhar -->
+            <!-- Div de erro oculta por padrão -->
             <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative text-sm" role="alert">
                 <span class="block sm:inline" id="error-text">Nome de usuário ou senha inválidos.</span>
             </div>
+
+            <!-- Div de sucesso -->
+            <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded relative text-sm" role="alert">
+                <span class="block sm:inline">Login realizado com sucesso! Redirecionando...</span>
+            </div>
             
             <div>
-                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                <button type="submit" id="btn-entrar" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
                     Entrar
                 </button>
             </div>
@@ -61,5 +66,67 @@
     <!-- SCRIPT JS -->
     <script src="enviroments_config.js"></script>
     <script src="javascript/supabaseService.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginForm = document.getElementById("login-form");
+            const errorMessage = document.getElementById("error-message");
+            const errorText = document.getElementById("error-text");
+            const successMessage = document.getElementById("success-message");
+
+            loginForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const usernameInput = document.getElementById("username").value.trim();
+                const passwordInput = document.getElementById("password").value;
+
+                errorMessage.classList.add("hidden");
+                successMessage.classList.add("hidden");
+
+                try {
+                    const response = await fetch(`${VARIABLES_CONFIG.url}${VARIABLES_CONFIG.tabela_usuario}?user_name=eq.${usernameInput}&select=*`, {
+                        method: 'GET',
+                        headers: {
+                            'apikey': VARIABLES_CONFIG.anonKey,
+                            'Authorization': `Bearer ${VARIABLES_CONFIG.anonKey}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    const usuarios = await response.json();
+
+                    if (usuarios && usuarios.length > 0) {
+                        const usuario = usuarios[0];
+
+                        if (usuario.password === passwordInput) {
+                            localStorage.setItem('usuario_logado', JSON.stringify({
+                                registro_academico: usuario.registro_academico,
+                                nome_completo: usuario.nome_completo,
+                                user_name: usuario.user_name,
+                                email: usuario.email,
+                                curso: usuario.nome_curso
+                            }));
+
+                            successMessage.classList.remove("hidden");
+
+                            setTimeout(() => {
+                                window.location.href = "conteudo.html";
+                            }, 1500);
+                        } else {
+                            errorText.textContent = "Senha incorreta. Tente novamente.";
+                            errorMessage.classList.remove("hidden");
+                        }
+                    } else {
+                        errorText.textContent = "Usuário não encontrado.";
+                        errorMessage.classList.remove("hidden");
+                    }
+                } catch (error) {
+                    console.error("Erro no login:", error);
+                    errorText.textContent = "Erro de conexão com o servidor.";
+                    errorMessage.classList.remove("hidden");
+                }
+            });
+        });
+    </script>
 </body>
 </html>

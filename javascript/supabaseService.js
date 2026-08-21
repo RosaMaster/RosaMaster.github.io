@@ -76,10 +76,29 @@ const SupabaseService = {
     },
 
     // ==========================================
-    // 4. LOGS DE AUDITORIA (SELECT, INSERT apenas)
+    // 4. LOGS DE AUDITORIA (Com rastreio de Erros)
     // ==========================================
     async registrarLog(registroAcademico, etapaAcesso, codigoDisciplina, statusCode, mensagem) {
         try {
+            // 1. Consulta o status da etapa atual
+            const checkResponse = await fetch(`${VARIABLES_CONFIG.url}${VARIABLES_CONFIG.tabela_parametros}?codigo_etapa_acesso=eq.${etapaAcesso}&select=status`, {
+                method: 'GET',
+                headers: this.getHeaders()
+            });
+
+            const parametros = await checkResponse.json();
+
+            // 2. Verifica se a etapa está desativada
+            if (parametros && parametros.length > 0) {
+                if (parametros[0].status === false) {
+                    console.log(`Gravação ignorada: A etapa '${etapaAcesso}' está com status FALSE.`);
+                    return null;
+                }
+            } else {
+                console.warn(`Atenção: A etapa '${etapaAcesso}' não existe na tabela 'parametros_sistema'. O Supabase vai bloquear a chave estrangeira!`);
+            }
+
+            // 3. Monta o pacote e grava
             const payload = {
                 registro_academico: registroAcademico,
                 codigo_etapa_acesso: etapaAcesso,
@@ -93,9 +112,19 @@ const SupabaseService = {
                 headers: this.getHeaders(),
                 body: JSON.stringify(payload)
             });
+            
+            // 4. INTERCEPTADOR DE ERROS (AQUI É ONDE VAMOS DESCOBRIR O PROBLEMA)
+            if (!response.ok) {
+                const erroDB = await response.json();
+                console.error(`❌ O Supabase bloqueou o log [${etapaAcesso}]. Motivo:`, erroDB);
+                return null;
+            }
+
+            console.log(`✅ Log [${etapaAcesso}] gravado com sucesso!`);
             return await response.json();
+            
         } catch (error) {
-            console.error('Erro ao registrar log de auditoria:', error);
+            console.error('Erro catastrófico ao registrar log:', error);
         }
     }
 };

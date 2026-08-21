@@ -7,6 +7,10 @@
     <!-- Caminho relativo para a sua imagem local -->
     <link rel="icon" type="image/png" href="img/Logo01.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <!-- Tom Select CSS (Para uma caixa de seleção elegante com busca integrada) -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+
     <!-- Caminho relativo para o CSS -->
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="css/mobile.css">
@@ -14,42 +18,49 @@
 <body class="d-flex flex-column min-vh-100">
 
     <!-- HEADER -->
-    <header class="shadow-sm py-0 mb-1" style="background-color: rgba(34, 40, 49, 1.0); border-width: 1px; border-style: solid; border-color: #222831;">
+    <header class="shadow-sm py-2 mb-3" style="background-color: rgba(34, 40, 49, 1.0); border-bottom: 1px solid #222831;">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <!-- Incluir imagem de logo -->
+            <!-- Logo e Título -->
             <div class="d-flex align-items-center gap-2">
-                <a href="conteudo.html" class="text-decoration-none text-primary me-3">
-                    <img src="img/Logo01_sem_fundo.png" alt="Logo sem texto" style="width:150px; height:150px; object-fit:contain; background:transparent; margin-right:10px;">
+                <a href="conteudo.html" class="text-decoration-none">
+                    <img src="img/Logo01_sem_fundo.png" alt="Logo sem texto" style="width:100px; height:100px; object-fit:contain; background:transparent;">
                 </a>
-                <h1 class="h3 mb-0 text-white" style="font-size: xxx-large;"><b>A R C H I V U M</b></h1>
+                <h1 class="h3 mb-0 text-white" style="letter-spacing: 5px;"><b>ARCHIVUM</b></h1>
             </div>
-            <nav style="font-size: 1.35rem;">
-                <a href="index.html" class="text-decoration-none text-primary me-3"><b>HOME</b></a>
-                <a href="conteudo.html" class="text-decoration-none text-secondary me-3"><b>CONTEÚDO</b></a>
-                <a href="politica_termos.html" class="text-decoration-none text-secondary me-3"><b>TERMOS DE USO</b></a>
-                <!-- Adicionado ID para acionar supabase.auth.signOut() futuramente via JS -->
-                <a href="login.html" id="btn-logout" class="btn btn-danger" style="font-size: 1.1rem;"><b>LOGOUT</b></a>
-            </nav>
+
+            <!-- Navegação e Identificação do Usuário alinhados corretamente -->
+            <div class="d-flex align-items-center gap-4">
+                <span id="nome-usuario-display" class="text-light fw-bold" style="font-size: 1.05rem;"></span>
+                <nav class="d-flex align-items-center gap-3 mb-0" style="font-size: 1.15rem;">
+                    <a href="index.html" class="text-decoration-none text-primary"><b>HOME</b></a>
+                    <a href="conteudo.html" class="text-decoration-none text-secondary"><b>CONTEÚDO</b></a>
+                    <!-- <a href="politica_termos.html" class="text-decoration-none text-secondary"><b>TERMOS DE USO</b></a> -->
+                    <a href="index.html" id="btn-logout" class="btn btn-danger btn-sm" style="font-size: 1rem;"><b>LOGOUT</b></a>
+                </nav>
+            </div>
         </div>
     </header>
 
     <div class="container flex-grow-1 mt-2 mb-5">
-        <!-- Dividir essa sessao em 2 partes menu lateral esquerdo, arquivo pdf centro -->
-        <div class="d-flex content-layout">
-            <div class="flex-shrink-0 p-3 bg-white content-menu" style="width: 280px; height: 600px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <!-- Layout em duas colunas: Menu lateral esquerdo e Visualizador de PDF ao centro -->
+        <div class="d-flex content-layout gap-4">
+            
+            <!-- Menu Lateral -->
+            <div class="p-3 bg-white content-menu" style="width: 340px; min-height: 600px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                
+                <!-- Seleção de Disciplina com Busca Nativa (Tom Select) -->
                 <div class="form-group mb-3">
-                    <label for="disciplinaSelect"><b>Selecione a disciplina:</b></label>
-                    <select class="form-control" id="disciplinaSelect">
-                        <option value="default">Escolha uma Disciplina</option>
-                        <option value="fundamentos_matematicos">Fundamentos Matemáticos</option>
-                        <option value="ingles">Inglês</option>
-                        <option value="pensamento_computacional">Pensamento Computacional</option>
+                    <label for="disciplinaSelect" class="form-label mb-1"><b>Selecione a disciplina:</b></label>
+                    <select id="disciplinaSelect" placeholder="Digite o código ou nome...">
+                        <option value="">Carregando disciplinas...</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="aulaSelect"><b>Selecione a aula:</b></label>
-                    <select class="form-control" id="aulaSelect">
+
+                <!-- Seleção de Aula -->
+                <div class="form-group mb-4">
+                    <label for="aulaSelect" class="form-label mb-1"><b>Selecione a aula:</b></label>
+                    <select class="form-select" id="aulaSelect">
                         <option value="aula1">Aula 1</option>
                         <option value="aula2">Aula 2</option>
                         <option value="aula3">Aula 3</option>
@@ -74,37 +85,20 @@
                         <option value="aula22">Aula 22</option>
                     </select>
                 </div>
-                <br><br>
-                <div>
-                    <!-- Atualizado para o caminho local padrão -->
-                    <a id="pdfLink" href="pdf/default/default.pdf" target="_blank" class="btn btn-warning" style="font-size: 1.1rem;"><b>Abrir PDF</b></a>
-                    <br><br>
-                    <a id="videoLink" href="https://www.youtube.com/watch?v=KxppXrcfMBA" target="_blank" class="btn btn-warning" style="font-size: 1.1rem;"><b>Abrir VÍDEO</b></a>
+
+                <!-- Botões de Ação -->
+                <div class="d-grid gap-2">
+                    <a id="pdfLink" href="pdf/default/default.pdf" target="_blank" class="btn btn-warning"><b>Abrir PDF</b></a>
+                    <a id="videoLink" href="https://www.youtube.com/watch?v=KxppXrcfMBA" target="_blank" class="btn btn-warning"><b>Abrir VÍDEO</b></a>
                 </div>
             </div>
-            <div class="mt-6 pdf-container" style="width: 1000px; height: 150px;">
-                <!-- Atualizado para o caminho local padrão -->
-                <embed id="pdfEmbed" src="pdf/default/default.pdf" type="application/pdf" width="110%" height="600px" />
+
+            <!-- Visualizador Central de PDF -->
+            <div class="flex-grow-1 pdf-container" style="height: 650px;">
+                <embed id="pdfEmbed" src="pdf/default/default.pdf" type="application/pdf" width="100%" height="100%" style="border: 1px solid #ddd; border-radius: 8px;" />
             </div>
         </div>
     </div>
-
-    <style>
-    .marquee-container {
-        overflow: hidden;
-        white-space: nowrap;
-        width: 100%;
-    }
-    .marquee-text {
-        display: inline-block;
-        padding-left: 100%;
-        animation: marquee 12s linear infinite;
-    }
-    @keyframes marquee {
-        0%   { transform: translateX(0); }
-        100% { transform: translateX(-100%); }
-    }
-    </style>
     
     <!-- FOOTER -->
     <footer class="bg-dark text-white mt-auto py-4">
@@ -113,143 +107,102 @@
         </div>
     </footer>
 
-    <!-- SCRIPT JS -->
+    <!-- SCRIPTS JS -->
     <script src="enviroments_config.js"></script>
     <script src="javascript/supabaseService.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    
+    <!-- Tom Select JS -->
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 
     <script>
-    // Caminhos convertidos de {% static %} para paths relativos de HTML
-    const pdfMap = {
-        fundamentos_matematicos: {
-            aula1: "pdf/fundamentos_matematicos/Aula1.pdf",
-            aula2: "pdf/fundamentos_matematicos/Aula2.pdf",
-            aula3: "pdf/fundamentos_matematicos/Aula3.pdf",
-            aula4: "pdf/fundamentos_matematicos/Aula4.pdf",
-            aula5: "pdf/fundamentos_matematicos/Aula5.pdf",
-            aula6: "pdf/fundamentos_matematicos/Aula6.pdf",
-            aula7: "pdf/fundamentos_matematicos/Aula7.pdf",
-            aula8: "pdf/fundamentos_matematicos/Aula8.pdf",
-            aula9: "pdf/fundamentos_matematicos/Aula9.pdf",
-            aula10: "pdf/fundamentos_matematicos/Aula10.pdf",
-            aula11: "pdf/fundamentos_matematicos/Aula11.pdf",
-            aula12: "pdf/fundamentos_matematicos/Aula12.pdf",
-            aula13: "pdf/fundamentos_matematicos/Aula13.pdf",
-            aula14: "pdf/fundamentos_matematicos/Aula14.pdf",
-            aula15: "pdf/fundamentos_matematicos/Aula15.pdf",
-            aula16: "pdf/fundamentos_matematicos/Aula16.pdf",
-            aula17: "pdf/fundamentos_matematicos/Aula17.pdf",
-            aula18: "pdf/fundamentos_matematicos/Aula18.pdf",
-            aula19: "pdf/fundamentos_matematicos/Aula19.pdf",
-            aula20: "pdf/fundamentos_matematicos/Aula20.pdf",
-            aula21: "pdf/fundamentos_matematicos/Aula21.pdf",
-            aula22: "pdf/fundamentos_matematicos/Aula22.pdf"
-        },
-        ingles: {
-            aula1: "pdf/ingles/Aula1.pdf",
-            aula2: "pdf/ingles/Aula2.pdf",
-            aula3: "pdf/ingles/Aula3.pdf",
-            aula4: "pdf/ingles/Aula4.pdf",
-            aula5: "pdf/ingles/Aula5.pdf",
-            aula6: "pdf/ingles/Aula6.pdf",
-            aula7: "pdf/ingles/Aula7.pdf",
-            aula8: "pdf/ingles/Aula8.pdf",
-            aula9: "pdf/ingles/Aula9.pdf",
-            aula10: "pdf/ingles/Aula10.pdf",
-            aula11: "pdf/ingles/Aula11.pdf",
-            aula12: "pdf/ingles/Aula12.pdf",
-            aula13: "pdf/ingles/Aula13.pdf",
-            aula14: "pdf/ingles/Aula14.pdf",
-            aula15: "pdf/ingles/Aula15.pdf",
-            aula16: "pdf/ingles/Aula16.pdf",
-            aula17: "pdf/ingles/Aula17.pdf",
-            aula18: "pdf/not_found/not_found.pdf",
-            aula19: "pdf/not_found/not_found.pdf",
-            aula20: "pdf/not_found/not_found.pdf",
-            aula21: "pdf/not_found/not_found.pdf",
-            aula22: "pdf/not_found/not_found.pdf"
-        },
-        pensamento_computacional: {
-            aula1: "pdf/pensamento_computacional/Aula1.pdf",
-            aula2: "pdf/pensamento_computacional/Aula2.pdf",
-            aula3: "pdf/pensamento_computacional/Aula3.pdf",
-            aula4: "pdf/pensamento_computacional/Aula4.pdf",
-            aula5: "pdf/pensamento_computacional/Aula5.pdf",
-            aula6: "pdf/pensamento_computacional/Aula6.pdf",
-            aula7: "pdf/pensamento_computacional/Aula7.pdf",
-            aula8: "pdf/pensamento_computacional/Aula8.pdf",
-            aula9: "pdf/pensamento_computacional/Aula9.pdf",
-            aula10: "pdf/pensamento_computacional/Aula10.pdf",
-            aula11: "pdf/pensamento_computacional/Aula11.pdf",
-            aula12: "pdf/pensamento_computacional/Aula12.pdf",
-            aula13: "pdf/pensamento_computacional/Aula13.pdf",
-            aula14: "pdf/pensamento_computacional/Aula14.pdf",
-            aula15: "pdf/pensamento_computacional/Aula15.pdf",
-            aula16: "pdf/pensamento_computacional/Aula16.pdf",
-            aula17: "pdf/pensamento_computacional/Aula17.pdf",
-            aula18: "pdf/pensamento_computacional/Aula18.pdf",
-            aula19: "pdf/not_found/not_found.pdf",
-            aula20: "pdf/not_found/not_found.pdf",
-            aula21: "pdf/not_found/not_found.pdf",
-            aula22: "pdf/not_found/not_found.pdf"
-        }
-    };
-    
-    const videoMap = {
-        fundamentos_matematicos: {
-            aula1: "https://www.youtube.com/watch?v=KxppXrcfMBA",
-            aula2: "https://www.youtube.com/watch?v=KxppXrcfMBA",
-            aula3: "https://www.youtube.com/watch?v=KxppXrcfMBA"
-            // ...adicione links para cada aula
-        },
-        ingles: {
-            aula1: "https://www.youtube.com/watch?v=KxppXrcfMBA",
-            aula2: "https://www.youtube.com/watch?v=KxppXrcfMBA",
-            aula3: "https://www.youtube.com/watch?v=KxppXrcfMBA"
-            // ...adicione links para cada aula
-        },
-        pensamento_computacional: {
-            aula1: "https://www.youtube.com/watch?v=KxppXrcfMBA",
-            aula2: "https://www.youtube.com/watch?v=KxppXrcfMBA",
-            aula3: "https://www.youtube.com/watch?v=KxppXrcfMBA"
-            // ...adicione links para cada aula
-        }
-    };
-    
-    const disciplinaSelect = document.getElementById('disciplinaSelect');
-    const aulaSelect = document.getElementById('aulaSelect');
-    const pdfLink = document.getElementById('pdfLink');
-    const pdfEmbed = document.getElementById('pdfEmbed');
-    const videoLink = document.getElementById('videoLink');
-    
-    function updateLinks() {
-        const disciplina = disciplinaSelect.value;
-        const aula = aulaSelect.value;
-        
-        // Trava de segurança: se estiver no "default", volta para o PDF vazio/padrão e encerra a função
-        if (disciplina === 'default') {
-            pdfLink.href = "assets/pdf/default/default.pdf";
-            pdfEmbed.src = "assets/pdf/default/default.pdf";
+    document.addEventListener("DOMContentLoaded", async () => {
+        const usuarioLogadoStr = localStorage.getItem('usuario_logado');
+        const nomeUsuarioDisplay = document.getElementById('nome-usuario-display');
+        let usuario;
+
+        if (usuarioLogadoStr) {
+            usuario = JSON.parse(usuarioLogadoStr);
+            nomeUsuarioDisplay.textContent = `Olá, ${usuario.nome_completo}`;
+            
+            // GATILHO AUTOMÁTICO: Acesso à tela de Conteúdo
+            await SupabaseService.registrarLog(usuario.registro_academico, 'ACESSO_CONTEUDO', null, '200', 'Acessou a página de visualização de conteúdo.');
+        } else {
+            window.location.href = "login.html";
             return;
         }
 
-        const pdfUrl = pdfMap[disciplina][aula];
-        const videoUrl = (videoMap[disciplina] && videoMap[disciplina][aula]) ? videoMap[disciplina][aula] : "https://www.youtube.com/watch?v=KxppXrcfMBA";
-        
-        if (pdfUrl) {
-            pdfLink.href = pdfUrl;
-            pdfEmbed.src = pdfUrl;
-        }
-        if (videoLink) {
-            videoLink.href = videoUrl;
-        }
-    }
-    
-    if (disciplinaSelect && aulaSelect && pdfLink && pdfEmbed && videoLink) {
-        disciplinaSelect.addEventListener('change', updateLinks);
-        aulaSelect.addEventListener('change', updateLinks);
-    }
-    </script>
+        // GATILHO AUTOMÁTICO: Botão de Logout
+        document.getElementById('btn-logout').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await SupabaseService.registrarLog(usuario.registro_academico, 'LOGOFF', null, '200', 'Sessão encerrada pelo usuário.');
+            localStorage.removeItem('usuario_logado');
+            window.location.href = "index.html";
+        });
 
+        const aulaSelect = document.getElementById('aulaSelect');
+        const pdfLink = document.getElementById('pdfLink');
+        const pdfEmbed = document.getElementById('pdfEmbed');
+        const videoLink = document.getElementById('videoLink');
+        let tomSelectInstance = null;
+
+        try {
+            const disciplinas = await SupabaseService.listarDisciplinas();
+            const selectElement = document.getElementById('disciplinaSelect');
+            selectElement.innerHTML = '<option value="">Digite para buscar a disciplina...</option>';
+            
+            if (disciplinas && disciplinas.length > 0) {
+                disciplinas.forEach(d => {
+                    const option = document.createElement('option');
+                    option.value = d.codigo_disciplina.toLowerCase();
+                    option.textContent = `[${d.codigo_disciplina}] ${d.nome}`;
+                    selectElement.appendChild(option);
+                });
+            }
+
+            tomSelectInstance = new TomSelect("#disciplinaSelect", {
+                create: false,
+                sortField: { field: "text", direction: "asc" },
+                onChange: function(value) { updateLinks(); }
+            });
+        } catch (error) {
+            console.error("Erro ao carregar disciplinas:", error);
+        }
+
+        function updateLinks() {
+            const disciplina = tomSelectInstance ? tomSelectInstance.getValue() : '';
+            const aula = aulaSelect.value;
+            
+            if (!disciplina) {
+                pdfLink.href = "pdf/default/default.pdf";
+                pdfEmbed.src = "pdf/default/default.pdf";
+                return;
+            }
+
+            const caminhoPdf = `pdf/${disciplina}/${aula}.pdf`;
+            pdfLink.href = caminhoPdf;
+            pdfEmbed.src = caminhoPdf;
+            videoLink.href = "https://www.youtube.com/watch?v=KxppXrcfMBA";
+        }
+
+        aulaSelect.addEventListener('change', updateLinks);
+
+        // GATILHO AUTOMÁTICO: Clique no link de Abrir PDF
+        pdfLink.addEventListener('click', async () => {
+            const disciplinaSelecionada = tomSelectInstance ? tomSelectInstance.getValue() : null;
+            if (disciplinaSelecionada) {
+                await SupabaseService.registrarLog(usuario.registro_academico, 'ABRIR_PDF', disciplinaSelecionada.toUpperCase(), '200', `Abriu PDF da ${aulaSelect.value}`);
+            }
+        });
+
+        // GATILHO AUTOMÁTICO: Clique no link de Abrir Vídeo
+        videoLink.addEventListener('click', async () => {
+            const disciplinaSelecionada = tomSelectInstance ? tomSelectInstance.getValue() : null;
+            if (disciplinaSelecionada) {
+                await SupabaseService.registrarLog(usuario.registro_academico, 'ABRIR_VIDEO', disciplinaSelecionada.toUpperCase(), '200', `Abriu Vídeo da ${aulaSelect.value}`);
+            }
+        });
+    });
+    </script>
 </body>
 </html>
