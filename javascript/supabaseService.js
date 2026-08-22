@@ -53,10 +53,16 @@ const SupabaseService = {
                 headers: this.getHeaders(),
                 body: JSON.stringify(dadosUsuario)
             });
+
+            if (!response.ok) {
+                const erroServidor = await response.json();
+                return { error: erroServidor };
+            }
+
             return await response.json();
         } catch (error) {
-            console.error('Erro ao cadastrar usuário:', error);
-            return { error };
+            console.error('Erro na requisição de cadastro:', error);
+            return { error: { message: error.message } };
         }
     },
 

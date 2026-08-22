@@ -9,146 +9,78 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="css/mobile.css">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .form-container {
-            width: min(520px, calc(100% - 32px));
-            max-width: none;
-            margin: 48px auto 48px auto;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.14);
-            padding: 32px 36px;
-            box-sizing: border-box;
-        }
-        @media (max-width: 480px) {
-            .form-container { padding: 16px 8px; }
-        }
-        .form-container h2 {
-            font-size: 2rem; font-weight: bold; color: #222831; text-align: center;
-            margin-bottom: 28px;
-        }
-        .help-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 18px;
-            height: 18px;
-            margin-left: 4px;
-            padding: 0;
-            border: 0;
-            border-radius: 50%;
-            background-color: #1769c2;
-            color: #fff;
-            font-size: 12px;
-            font-weight: bold;
-            line-height: 1;
-            vertical-align: middle;
-            cursor: help;
-        }
-        .help-button:hover,
-        .help-button:focus-visible {
-            background-color: #0d4f94;
-        }
-        .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
-            width: 100%;
-            background-color: rgba(34, 40, 49, 1.0);
-        }
-        .marquee-text {
-            display: inline-block; padding-left: 100%;
-            animation: marquee 12s linear infinite;
-            color: white;
-        }
-        @keyframes marquee {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-<!-- HEADER -->
-<header class="shadow-sm py-0 mb-1" style="background-color: #222831; border-width: 1px; border-style: solid; border-color: #222831;">
+<!-- HEADER PADRÃO UNIFICADO -->
+<header class="shadow-sm mb-1" style="background-color: rgba(34, 40, 49, 1.0); border: 1px solid #222831; padding-top: 4px; padding-bottom: 4px;">
     <div class="container d-flex justify-content-between align-items-center">
 
-        <!-- Logo e nome alinhados horizontalmente -->
-        <div class="d-flex align-items-center gap-1">
-            <img src="img/Logo01_sem_fundo.png" alt="Logo" style="width:120px; height:120px; object-fit:contain;">
-            <h1 class="h1 mb-0 text-white" style="letter-spacing:10px; font-weight:700;">ARCHIVUM</h1>
+        <!-- Logo e Título com espaçamento fixo -->
+        <div class="d-flex align-items-center gap-2">
+            <a href="index.html" class="text-decoration-none">
+                <img src="img/Logo01_sem_fundo.png" alt="Logo ARCHIVUM" style="width:130px; height:130px; object-fit:contain; background:transparent;">
+            </a>
+            <h1 class="h3 mb-0 text-white" style="font-size: 2.5rem; font-weight: bold; letter-spacing: 2px;">ARCHIVUM</h1>
         </div>
-
-        <!-- Menu de navegação ajustado com caminhos .html -->
-        <nav style="font-size: 1.35rem;">
-            <a href="index.html" class="text-decoration-none fw-bold" style="color: #1769c2;">HOME</a>
-            <a href="politica_termos.html" class="text-decoration-none text-secondary me-3"><b>TERMOS DE USO</b></a>
-            <a href="login.html" class="btn btn-primary ms-2" style="font-size: 1.1rem;">LOGIN</a>
+        
+        <!-- Navegação padrão -->
+        <nav class="d-flex align-items-center" style="font-size: 1.25rem; gap: 1.5rem;">
+            <a href="index.html" class="text-decoration-none text-primary"><b>HOME</b></a>
+            <a href="politica_termos.html" class="text-decoration-none text-secondary"><b>TERMOS DE USO</b></a>
+            <a href="cadastro.html" class="btn btn-success" style="font-size: 1rem;"><b>CADASTRO</b></a>
+            <a href="login.html" class="btn btn-primary" style="font-size: 1rem;"><b>LOGIN</b></a>
         </nav>
-
     </div>
 </header>
 
-
 <!-- FORMULÁRIO DE CADASTRO -->
-<div class="form-container">
-    <h2>CADASTRE-SE</h2>
+<div class="container-padrao bg-white p-8 rounded-2xl shadow-xl mt-5 mb-5 max-w-xl">
+    <h2 class="text-3xl font-bold mb-6 text-center text-slate-800">CADASTRE-SE</h2>
     
-    <!-- Div reservada para mensagens do Supabase (Invisível por padrão) -->
+    <!-- Div reservada para mensagens do Supabase -->
     <div id="alerta-mensagem" class="alert d-none text-center" role="alert"></div>
     
-    <!-- ID adicionado para captura via JavaScript -->
-    <form id="form-cadastro" autocomplete="off">
+    <form id="form-cadastro" autocomplete="off" class="space-y-4">
         
         <div class="mb-3">
-            <label for="registro_academico" class="form-label">Registro Acadêmico (RA): <button type="button" class="help-button" title="Informe o número do seu Registro Acadêmico (RA)." aria-label="Ajuda sobre Registro Acadêmico">?</button></label>
+            <label for="registro_academico" class="form-label font-medium text-slate-700">Registro Acadêmico (RA): <button type="button" class="help-button" title="Informe o número do seu Registro Acadêmico (RA)." aria-label="Ajuda sobre Registro Acadêmico">?</button></label>
             <input type="text" id="registro_academico" name="registro_academico" class="form-control" required>
-            <div id="erro-ra" class="text-danger small d-none"></div>
         </div>
         
         <div class="mb-3">
-            <label for="nome" class="form-label">Nome Completo: <button type="button" class="help-button" title="Informe seu nome completo, sem abreviações e sem caracteres especiais." aria-label="Ajuda sobre Nome Completo">?</button></label>
+            <label for="nome" class="form-label font-medium text-slate-700">Nome Completo: <button type="button" class="help-button" title="Informe seu nome completo, sem abreviações e sem caracteres especiais." aria-label="Ajuda sobre Nome Completo">?</button></label>
             <input type="text" id="nome" name="nome" class="form-control" required>
-            <div id="erro-nome" class="text-danger small d-none"></div>
-        </div>
-
-        <div class="mb-3">
-            <label for="username" class="form-label">Username: <button type="button" class="help-button" title="Crie um nome de usuário para acessar a plataforma. Evite espaços e acentos." aria-label="Ajuda sobre Username">?</button></label>
-            <input type="text" id="username" name="username" class="form-control" required>
-            <div id="erro-username" class="text-danger small d-none"></div>
         </div>
         
         <div class="mb-3">
-            <label for="email" class="form-label">E-mail: <button type="button" class="help-button" title="Informe um endereço de e-mail válido ao qual você tenha acesso." aria-label="Ajuda sobre E-mail">?</button></label>
+            <label for="email" class="form-label font-medium text-slate-700">E-mail: <button type="button" class="help-button" title="Informe um endereço de e-mail válido ao qual você tenha acesso." aria-label="Ajuda sobre E-mail">?</button></label>
             <input type="email" id="email" name="email" class="form-control" required>
-            <div id="erro-email" class="text-danger small d-none"></div>
         </div>
         
         <div class="mb-3">
-            <label for="curso" class="form-label">Curso: <button type="button" class="help-button" title="Selecione o seu curso na UNIVESP." aria-label="Ajuda sobre Curso">?</button></label>
-            <!-- Alterado de input text para select para buscar os cursos do banco -->
+            <label for="curso" class="form-label font-medium text-slate-700">Curso: <button type="button" class="help-button" title="Selecione o seu curso na UNIVESP." aria-label="Ajuda sobre Curso">?</button></label>
             <select id="curso" name="curso" class="form-control" required>
                 <option value="">Carregando cursos...</option>
             </select>
-            <div id="erro-curso" class="text-danger small d-none"></div>
         </div>
         
         <div class="mb-3">
-            <label for="senha" class="form-label">Senha: <button type="button" class="help-button" title="Use de 8 a 20 caracteres, com pelo menos um caractere especial, um número e uma letra maiúscula. Não use espaços, palavras comuns, sequências de teclas, números sequenciais ou números repetidos." aria-label="Regras para a senha">?</button></label>
+            <label for="senha" class="form-label font-medium text-slate-700">Senha: <button type="button" class="help-button" title="Use de 8 a 20 caracteres, com pelo menos um caractere especial, um número e uma letra maiúscula." aria-label="Regras para a senha">?</button></label>
             <input type="password" id="senha" name="senha" class="form-control" required>
-            <div id="erro-senha" class="text-danger small d-none"></div>
         </div>
         
-        <div class="mb-3">
-            <label for="confirmar_senha" class="form-label">Confirmar Senha: <button type="button" class="help-button" title="Digite novamente a mesma senha informada no campo anterior." aria-label="Ajuda sobre Confirmar Senha">?</button></label>
+        <div class="mb-4">
+            <label for="confirmar_senha" class="form-label font-medium text-slate-700">Confirmar Senha: <button type="button" class="help-button" title="Digite novamente a mesma senha informada no campo anterior." aria-label="Ajuda sobre Confirmar Senha">?</button></label>
             <input type="password" id="confirmar_senha" name="confirmar_senha" class="form-control" required>
-            <div id="erro-confirmar-senha" class="text-danger small d-none"></div>
         </div>
 
-        <button type="submit" id="btn-cadastrar" class="btn btn-primary w-100">Cadastrar</button>
+        <button type="submit" id="btn-cadastrar" class="btn btn-primary w-100 py-2 font-bold">Cadastrar</button>
     </form>
     
-    <div class="mt-3 text-center">
+    <div class="mt-4 text-center">
         <a href="login.html" class="fw-bold text-primary text-decoration-none">Já tem uma conta? Faça o login</a>
     </div>
 </div>
@@ -160,7 +92,7 @@
     </div>
 </footer>
 
-<!-- SCRIPT JS -->
+<!-- SCRIPTS JS -->
 <script src="enviroments_config.js"></script>
 <script src="javascript/supabaseService.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
@@ -171,7 +103,6 @@
         const alertaMensagem = document.getElementById("alerta-mensagem");
         const formCadastro = document.getElementById("form-cadastro");
 
-        // 1. Carregar os cursos do Supabase ao abrir a página
         try {
             const cursos = await SupabaseService.listarCursos();
             selectCurso.innerHTML = '<option value="">Selecione o seu curso</option>';
@@ -191,14 +122,19 @@
             selectCurso.innerHTML = '<option value="">Erro ao carregar cursos</option>';
         }
 
-        // 2. Manipular o envio do formulário de cadastro
         formCadastro.addEventListener("submit", async (e) => {
             e.preventDefault();
 
+            const ra = document.getElementById("registro_academico").value.trim();
+            const nome = document.getElementById("nome").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const curso = selectCurso.value;
             const senha = document.getElementById("senha").value;
             const confirmarSenha = document.getElementById("confirmar_senha").value;
 
-            // Validação simples de confirmação de senha
+            alertaMensagem.className = "alert d-none text-center";
+            alertaMensagem.textContent = "";
+
             if (senha !== confirmarSenha) {
                 alertaMensagem.className = "alert alert-danger text-center";
                 alertaMensagem.textContent = "As senhas não coincidem!";
@@ -206,35 +142,60 @@
                 return;
             }
 
-            // Montar o objeto correspondente à tabela usuarios_sistema
-            const dadosUsuario = {
-                registro_academico: document.getElementById("registro_academico").value.trim(),
-                nome_completo: document.getElementById("nome").value.trim(),
-                user_name: document.getElementById("username").value.trim(),
-                email: document.getElementById("email").value.trim(),
-                nome_curso: selectCurso.value,
-                password: senha // Em produção posterior, lembre-se de aplicar hash se necessário
-            };
-
-            alertaMensagem.className = "alert alert-info text-center";
-            alertaMensagem.textContent = "Cadastrando usuário...";
-            alertaMensagem.classList.remove("d-none");
-
-            // Enviar para o Supabase usando o service
-            const resultado = await SupabaseService.cadastrarUsuario(dadosUsuario);
-
-            // Verificar se ocorreu erro (o PostgREST costuma retornar erro em forma de objeto ou array vazio dependendo da resposta)
-            if (resultado && resultado.error) {
-                alertaMensagem.className = "alert alert-danger text-center";
-                alertaMensagem.textContent = "Erro ao cadastrar: " + (resultado.error.message || "Verifique os dados duplicados.");
-            } else {
-                alertaMensagem.className = "alert alert-success text-center";
-                alertaMensagem.textContent = "Cadastro realizado com sucesso! Redirecionando...";
-                formCadastro.reset();
+            try {
+                const res = await fetch(`${VARIABLES_CONFIG.url}${VARIABLES_CONFIG.tabela_usuario}?or=(registro_academico.eq.${ra},email.eq.${encodeURIComponent(email)})&select=registro_academico,email`, {
+                    method: 'GET',
+                    headers: {
+                        'apikey': VARIABLES_CONFIG.anonKey,
+                        'Authorization': `Bearer ${VARIABLES_CONFIG.anonKey}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const existentes = await res.json();
                 
-                setTimeout(() => {
-                    window.location.href = "login.html";
-                }, 2000);
+                if (existentes && existentes.length > 0) {
+                    await SupabaseService.registrarLog(ra, 'CADASTRO_FALHA', null, '400', 'Tentativa de cadastro com RA ou E-mail já existente.');
+                    alertaMensagem.className = "alert alert-danger text-center";
+                    alertaMensagem.textContent = "Erro: Este Registro Acadêmico (RA) ou E-mail já está cadastrado no sistema.";
+                    alertaMensagem.classList.remove("d-none");
+                    return;
+                }
+
+                alertaMensagem.className = "alert alert-info text-center";
+                alertaMensagem.textContent = "Cadastrando usuário...";
+                alertaMensagem.classList.remove("d-none");
+
+                const dadosUsuario = {
+                    registro_academico: ra,
+                    nome_completo: nome,
+                    email: email,
+                    nome_curso: curso,
+                    password: senha
+                };
+
+                const resultado = await SupabaseService.cadastrarUsuario(dadosUsuario);
+
+                if (resultado && resultado.error) {
+                    await SupabaseService.registrarLog(ra, 'CADASTRO_FALHA', null, '400', 'Erro de duplicidade ou restrição no banco.');
+                    alertaMensagem.className = "alert alert-danger text-center";
+                    alertaMensagem.textContent = "Erro ao cadastrar: Dados já cadastrados no sistema.";
+                    alertaMensagem.classList.remove("d-none");
+                } else {
+                    await SupabaseService.registrarLog(ra, 'CADASTRO_SUCESSO', null, '201', 'Usuário realizou cadastro com sucesso.');
+                    alertaMensagem.className = "alert alert-success text-center";
+                    alertaMensagem.textContent = "Cadastro realizado com sucesso! Redirecionando...";
+                    alertaMensagem.classList.remove("d-none");
+                    formCadastro.reset();
+                    
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 2000);
+                }
+            } catch (error) {
+                console.error("Erro no processo de cadastro:", error);
+                alertaMensagem.className = "alert alert-danger text-center";
+                alertaMensagem.textContent = "Erro de conexão com o servidor.";
+                alertaMensagem.classList.remove("d-none");
             }
         });
     });

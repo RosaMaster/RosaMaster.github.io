@@ -14,40 +14,41 @@
     <!-- Caminho relativo para o CSS -->
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Tailwind CSS para padronização de limites -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- HEADER -->
-    <header class="shadow-sm py-2 mb-3" style="background-color: rgba(34, 40, 49, 1.0); border-bottom: 1px solid #222831;">
+    <!-- HEADER PADRÃO UNIFICADO -->
+    <header class="shadow-sm mb-1" style="background-color: rgba(34, 40, 49, 1.0); border: 1px solid #222831; padding-top: 4px; padding-bottom: 4px;">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <!-- Logo e Título -->
+            <!-- Logo e Título com espaçamento fixo -->
             <div class="d-flex align-items-center gap-2">
-                <a href="conteudo.html" class="text-decoration-none">
-                    <img src="img/Logo01_sem_fundo.png" alt="Logo sem texto" style="width:100px; height:100px; object-fit:contain; background:transparent;">
+                <a href="index.html" class="text-decoration-none">
+                    <img src="img/Logo01_sem_fundo.png" alt="Logo ARCHIVUM" style="width:130px; height:130px; object-fit:contain; background:transparent;">
                 </a>
-                <h1 class="h3 mb-0 text-white" style="letter-spacing: 5px;"><b>ARCHIVUM</b></h1>
+                <h1 class="h3 mb-0 text-white" style="font-size: 2.5rem; font-weight: bold; letter-spacing: 2px;">ARCHIVUM</h1>
             </div>
 
-            <!-- Navegação e Identificação do Usuário alinhados corretamente -->
+            <!-- Navegação e Identificação do Usuário (Home removida, mantendo apenas Logout) -->
             <div class="d-flex align-items-center gap-4">
                 <span id="nome-usuario-display" class="text-light fw-bold" style="font-size: 1.05rem;"></span>
-                <nav class="d-flex align-items-center gap-3 mb-0" style="font-size: 1.15rem;">
-                    <a href="index.html" class="text-decoration-none text-primary"><b>HOME</b></a>
-                    <a href="conteudo.html" class="text-decoration-none text-secondary"><b>CONTEÚDO</b></a>
-                    <!-- <a href="politica_termos.html" class="text-decoration-none text-secondary"><b>TERMOS DE USO</b></a> -->
+                <nav class="d-flex align-items-center" style="font-size: 1.25rem; gap: 1.5rem;">
                     <a href="index.html" id="btn-logout" class="btn btn-danger btn-sm" style="font-size: 1rem;"><b>LOGOUT</b></a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <div class="container flex-grow-1 mt-2 mb-5">
+    <!-- CONTAINER PRINCIPAL USANDO A CLASSE .container-padrao PARA ALINHAR PERFEITAMENTE COM A LOGO -->
+    <div class="container-padrao flex-grow-1 mt-4 mb-5">
         <!-- Layout em duas colunas: Menu lateral esquerdo e Visualizador de PDF ao centro -->
         <div class="d-flex content-layout gap-4">
             
             <!-- Menu Lateral -->
-            <div class="p-3 bg-white content-menu" style="width: 340px; min-height: 600px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="p-3 bg-white content-menu" style="width: 340px; min-height: 600px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); flex-shrink: 0;">
                 
                 <!-- Seleção de Disciplina com Busca Nativa (Tom Select) -->
                 <div class="form-group mb-3">
@@ -93,8 +94,8 @@
                 </div>
             </div>
 
-            <!-- Visualizador Central de PDF -->
-            <div class="flex-grow-1 pdf-container" style="height: 650px;">
+            <!-- Visualizador Central de PDF Alinhado -->
+            <div class="flex-grow-1 pdf-container" style="height: 700px;">
                 <embed id="pdfEmbed" src="pdf/default/default.pdf" type="application/pdf" width="100%" height="100%" style="border: 1px solid #ddd; border-radius: 8px;" />
             </div>
         </div>
@@ -125,14 +126,12 @@
             usuario = JSON.parse(usuarioLogadoStr);
             nomeUsuarioDisplay.textContent = `Olá, ${usuario.nome_completo}`;
             
-            // GATILHO AUTOMÁTICO: Acesso à tela de Conteúdo
             await SupabaseService.registrarLog(usuario.registro_academico, 'ACESSO_CONTEUDO', null, '200', 'Acessou a página de visualização de conteúdo.');
         } else {
             window.location.href = "login.html";
             return;
         }
 
-        // GATILHO AUTOMÁTICO: Botão de Logout
         document.getElementById('btn-logout').addEventListener('click', async (e) => {
             e.preventDefault();
             await SupabaseService.registrarLog(usuario.registro_academico, 'LOGOFF', null, '200', 'Sessão encerrada pelo usuário.');
@@ -187,7 +186,6 @@
 
         aulaSelect.addEventListener('change', updateLinks);
 
-        // GATILHO AUTOMÁTICO: Clique no link de Abrir PDF
         pdfLink.addEventListener('click', async () => {
             const disciplinaSelecionada = tomSelectInstance ? tomSelectInstance.getValue() : null;
             if (disciplinaSelecionada) {
@@ -195,7 +193,6 @@
             }
         });
 
-        // GATILHO AUTOMÁTICO: Clique no link de Abrir Vídeo
         videoLink.addEventListener('click', async () => {
             const disciplinaSelecionada = tomSelectInstance ? tomSelectInstance.getValue() : null;
             if (disciplinaSelecionada) {

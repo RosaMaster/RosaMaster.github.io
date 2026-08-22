@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Analítico - ARCHIVUM</title>
+    <!-- Favicon e Estilos Globais -->
+    <link rel="icon" type="image/png" href="img/Logo01.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js para os gráficos analíticos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- HEADER PADRÃO UNIFICADO -->
+    <header class="shadow-sm mb-1" style="background-color: rgba(34, 40, 49, 1.0); border: 1px solid #222831; padding-top: 4px; padding-bottom: 4px;">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- Logo e Título -->
+            <div class="d-flex align-items-center gap-2">
+                <a href="index.html" class="text-decoration-none">
+                    <img src="img/Logo01_sem_fundo.png" alt="Logo ARCHIVUM" style="width:130px; height:130px; object-fit:contain; background:transparent;">
+                </a>
+                <h1 class="h3 mb-0 text-white" style="font-size: 2.5rem; font-weight: bold; letter-spacing: 2px;">ARCHIVUM</h1>
+            </div>
+
+            <!-- Navegação e Identificação -->
+            <div class="d-flex align-items-center gap-4">
+                <span id="nome-admin-display" class="text-light fw-bold" style="font-size: 1.05rem;"><b>VISITANTE</b></span>
+                <nav class="d-flex align-items-center" style="font-size: 1.25rem; gap: 1.5rem;">
+                    <a href="index.html" class="text-decoration-none text-primary"><b>HOME</b></a>
+                    <!-- <a href="conteudo.html" class="text-decoration-none text-secondary"><b>CONTEÚDO</b></a> -->
+                    <!-- <a href="login.html" class="btn btn-primary btn-sm" style="font-size: 1rem;"><b>LOGIN</b></a> -->
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL DO DASHBOARD -->
+    <div class="container-padrao flex-grow-1 mt-4 mb-5">
+        
+        <!-- Título da Seção -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="text-3xl font-bold text-slate-800">DATA ANALYTICS</h2>
+                <p class="text-sm text-slate-600">Acompanhamento de uso, engajamento acadêmico e auditoria do portal.</p>
+            </div>
+            <button id="btn-atualizar" class="btn btn-primary btn-sm px-3 py-2 font-bold">Atualizar Dados</button>
+        </div>
+
+        <!-- CARDS DE RESUMO (KPIs) -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total de Usuários</p>
+                    <h3 id="kpi-total-usuarios" class="text-3xl font-extrabold text-slate-800 mt-2">0</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Logins Realizados</p>
+                    <h3 id="kpi-total-logins" class="text-3xl font-extrabold text-blue-600 mt-2">0</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">PDFs Visualizados</p>
+                    <h3 id="kpi-total-pdfs" class="text-3xl font-extrabold text-emerald-600 mt-2">0</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Vídeos Acessados</p>
+                    <h3 id="kpi-total-videos" class="text-3xl font-extrabold text-amber-600 mt-2">0</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRÁFICOS ANALÍTICOS -->
+        <div class="row g-4 mb-5">
+            <!-- Gráfico de Interações por Tipo de Ação -->
+            <div class="col-lg-6">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 h-100">
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Distribuição de Ações no Sistema</h3>
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="chartAcoes"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Gráfico de Disciplinas Mais Acessadas -->
+            <div class="col-lg-6">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 h-100">
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Disciplinas Mais Consultadas</h3>
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="chartDisciplinas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABELA RECENTE DE LOGS DE AUDITORIA -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <h3 class="text-xl font-bold text-slate-800 mb-4">Últimos Eventos Registrados (Logs)</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Data / Hora</th>
+                            <th>RA</th>
+                            <th>Ação</th>
+                            <th>Detalhe / Disciplina</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-logs-corpo">
+                        <tr>
+                            <td colspan="5" class="text-center text-slate-500 py-4">Carregando registros de auditoria...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white mt-auto py-4">
+        <div class="text-center p-3 text-white">
+            <b>A R C H I V U M</b> © 2026 Copyright
+        </div>
+    </footer>
+
+    <!-- SCRIPTS JS -->
+    <script src="enviroments_config.js"></script>
+    <script src="javascript/supabaseService.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        let chartAcoesInstance = null;
+        let chartDisciplinasInstance = null;
+
+        async function carregarDashboard() {
+            try {
+                // 1. Buscar total de usuários cadastrados
+                const resUsuarios = await fetch(`${VARIABLES_CONFIG.url}${VARIABLES_CONFIG.tabela_usuario}?select=count`, {
+                    headers: { 'apikey': VARIABLES_CONFIG.anonKey, 'Authorization': `Bearer ${VARIABLES_CONFIG.anonKey}` }
+                });
+                const usuariosRange = resUsuarios.headers.get('content-range');
+                const totalUsuarios = usuariosRange ? usuariosRange.split('/')[1] : '0';
+                document.getElementById('kpi-total-usuarios').textContent = totalUsuarios;
+
+                // 2. Buscar logs de auditoria do sistema
+                const resLogs = await fetch(`${VARIABLES_CONFIG.url}logs_auditoria?select=*&order=data_hora.desc&limit=50`, {
+                    headers: { 'apikey': VARIABLES_CONFIG.anonKey, 'Authorization': `Bearer ${VARIABLES_CONFIG.anonKey}` }
+                });
+                const logs = await resLogs.json();
+
+                if (logs && logs.length > 0) {
+                    const totalLogins = logs.filter(l => l.acao === 'LOGIN_SUCESSO').length;
+                    const totalPdfs = logs.filter(l => l.acao === 'ABRIR_PDF').length;
+                    const totalVideos = logs.filter(l => l.acao === 'ABRIR_VIDEO').length;
+
+                    document.getElementById('kpi-total-logins').textContent = totalLogins;
+                    document.getElementById('kpi-total-pdfs').textContent = totalPdfs;
+                    document.getElementById('kpi-total-videos').textContent = totalVideos;
+
+                    const tbody = document.getElementById('tabela-logs-corpo');
+                    tbody.innerHTML = '';
+                    logs.slice(0, 10).forEach(log => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${new Date(log.data_hora).toLocaleString('pt-BR')}</td>
+                            <td><span class="font-mono fw-bold">${log.registro_academico || 'N/D'}</span></td>
+                            <td><span class="badge bg-secondary">${log.acao}</span></td>
+                            <td>${log.detalhes || '-'}</td>
+                            <td><span class="badge ${log.status_code === '200' || log.status_code === '201' ? 'bg-success' : 'bg-danger'}">${log.status_code}</span></td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+
+                    const contagemAcoes = {};
+                    logs.forEach(l => {
+                        contagemAcoes[l.acao] = (contagemAcoes[l.acao] || 0) + 1;
+                    });
+
+                    const ctxAcoes = document.getElementById('chartAcoes').getContext('2d');
+                    if (chartAcoesInstance) chartAcoesInstance.destroy();
+                    chartAcoesInstance = new Chart(ctxAcoes, {
+                        type: 'doughnut',
+                        data: {
+                            labels: Object.keys(contagemAcoes),
+                            datasets: [{
+                                data: Object.values(contagemAcoes),
+                                backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#64748b']
+                            }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false }
+                    });
+
+                    const contagemDisc = {};
+                    logs.filter(l => l.disciplina).forEach(l => {
+                        contagemDisc[l.disciplina] = (contagemDisc[l.disciplina] || 0) + 1;
+                    });
+
+                    const ctxDisc = document.getElementById('chartDisciplinas').getContext('2d');
+                    if (chartDisciplinasInstance) chartDisciplinasInstance.destroy();
+                    chartDisciplinasInstance = new Chart(ctxDisc, {
+                        type: 'bar',
+                        data: {
+                            labels: Object.keys(contagemDisc).length > 0 ? Object.keys(contagemDisc) : ['Nenhuma disciplina consultada'],
+                            datasets: [{
+                                label: 'Consultas',
+                                data: Object.values(contagemDisc).length > 0 ? Object.values(contagemDisc) : [0],
+                                backgroundColor: '#1769c2'
+                            }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false }
+                    });
+                }
+            } catch (error) {
+                console.error("Erro ao carregar dados do dashboard:", error);
+            }
+        }
+
+        document.getElementById('btn-atualizar').addEventListener('click', carregarDashboard);
+        carregarDashboard();
+    });
+    </script>
+</body>
+</html>

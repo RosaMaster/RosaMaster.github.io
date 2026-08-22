@@ -1,29 +1,219 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet">
-  <!-- Dev Icon Fonts -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
-  <!-- CSS do Projeto -->
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- Framework w3school -->
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-<body>
-
-    <h2 class="w3-center">Navegação</h2>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <!-- Caminho relativo para a imagem local -->
+    <link rel="icon" type="image/png" href="img/Logo01.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Caminho relativo para o CSS -->
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Tailwind CSS para padronizar os limites de largura com os Termos de Uso -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-  <a href="cadastro.html" class="w3-button w3-black w3-round-large w3-hover-blue">Cadastrar</a><br>
-  <a href="conteudo.html" class="w3-button w3-black w3-round-large w3-hover-blue">Conteúdo</a><br>
-  <a href="home.html" class="w3-button w3-black w3-round-large w3-hover-blue">Home</a><br>
-  <a href="index.html" class="w3-button w3-black w3-round-large w3-hover-blue">Index</a><br>
-  <a href="login.html" class="w3-button w3-black w3-round-large w3-hover-blue">Login</a><br>
-  <a href="politica_termos.html" class="w3-button w3-black w3-round-large w3-hover-blue">Política de Privacidade e Termos de Uso</a><br>
-  <a href="reset_senha.html" class="w3-button w3-black w3-round-large w3-hover-blue">Resetar Senha</a><br>
+    <style>
+        /* Restringe o justificado APENAS aos parágrafos dentro de conteudo-texto, preservando os títulos intactos */
+        .conteudo-texto p {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .marquee-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 12s linear infinite;
+        }
+        @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- HEADER PADRÃO UNIFICADO -->
+    <header class="shadow-sm mb-1" style="background-color: rgba(34, 40, 49, 1.0); border: 1px solid #222831; padding-top: 4px; padding-bottom: 4px;">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- Logo e Título com espaçamento fixo -->
+            <div class="d-flex align-items-center gap-2">
+                <a href="index.html" class="text-decoration-none">
+                    <img src="img/Logo01_sem_fundo.png" alt="Logo ARCHIVUM" style="width:130px; height:130px; object-fit:contain; background:transparent;">
+                </a>
+                <h1 class="h3 mb-0 text-white" style="font-size: 2.5rem; font-weight: bold; letter-spacing: 2px;">ARCHIVUM</h1>
+            </div>
+            
+            <!-- Navegação padrão -->
+            <nav class="d-flex align-items-center" style="font-size: 1.25rem; gap: 1.5rem;">
+                <a href="index.html" class="text-decoration-none text-primary"><b>HOME</b></a>
+                <a href="politica_termos.html" class="text-decoration-none text-secondary"><b>TERMOS DE USO</b></a>
+                <a href="cadastro.html" class="btn btn-success" style="font-size: 1rem;"><b>CADASTRO</b></a>
+                <a href="login.html" class="btn btn-primary" style="font-size: 1rem;"><b>LOGIN</b></a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="marquee-container" style="background-color: rgba(34, 40, 49, 1.0);">
+        <div class="marquee-text h6 mb-0 text-white">
+            BEM VINDOS AO ARCHIVUM FEITO POR ALUNOS PARA ALUNOS E EX-ALUNOS DA UNIVESP! BONS ESTUDOS!
+        </div>
+    </div>
+    
+    <!-- Container principal com a largura max-w-7xl padronizada -->
+    <div class="mx-auto max-w-7xl w-full px-4">
+        <div class="container mt-4 px-0">
+            <div class="alert alert-info text-center" role="alert">
+                <b>Ainda não tem uma cadastro?</b>
+                <a href="cadastro.html" class="btn btn-success ms-2"><b>CLIQUE AQUI PARA SE CADASTRAR</b></a>
+            </div>
+        </div>
+
+        <div class="container mt-2 mb-5 px-0">
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <div class="p-3 bg-white sticky-top" style="top: 1rem; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <h5 class="mb-4"><b>ÍNDICE</b></h5>
+                        <ul class="nav nav-pills flex-column mb-auto">
+                            <li class="nav-item mb-2">
+                                <a href="#novidades" class="nav-link active" aria-current="page">
+                                    <b>Novidades</b>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="#sobre-o-projeto" class="nav-link active" aria-current="page">
+                                    <b>Sobre o Projeto</b>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="#objetivo" class="nav-link active" aria-current="page">
+                                    <b>Objetivo</b>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="#resultados-esperados" class="nav-link active" aria-current="page">
+                                    <b>Resultados Esperados</b>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="#equipe" class="nav-link active" aria-current="page">
+                                    <b>Equipe</b>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="#empresa-instituicao" class="nav-link active" aria-current="page">
+                                    <b>Empresa / Instituição</b>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Conteúdo principal com espaçamento otimizado (mb-4) -->
+                <div class="col-12 col-md-8 conteudo-texto">
+
+                    <div class="mb-4" id="novidades">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">Novidades</h3>
+                        <p>Os dados ... <a href="dashboard.html" class="text-blue-600 font-bold text-decoration-underline">Dashboard</a></p>
+                    </div>
+                    <div class="mb-4" id="sobre-o-projeto">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">Sobre o Projeto</h3>
+                        <p>O projeto <b>ARCHIVUM</b> é uma plataforma desenvolvida por alunos do Eixo da Computação da Universidade UNIVESP, com o objetivo de facilitar o acesso a conteúdos educacionais e promover o aprendizado colaborativo. A ideia surgiu através da necessidade de centralizar informações e recursos de forma acessível e organizada, utilizando de controle de acesso e facilitando a navegação pelos materiais disponíveis.</p>
+                    </div>
+                    <div class="mb-4" id="objetivo">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">Objetivo</h3>
+                        <p>O objetivo do <b>ARCHIVUM</b> é proporcionar um ambiente virtual que suporte o aprendizado dos alunos, oferecendo uma variedade de recursos educacionais de forma integrada e acessível. A plataforma visa atender às necessidades dos estudantes, facilitando o acesso a materiais didáticos que não possuem mais acesso ao finalizar a graduação e se formarem.</p>
+                    </div>
+                    <div class="mb-4" id="resultados-esperados">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">Resultados Esperados</h3>
+                        <p>Os resultados esperados do <b>ARCHIVUM</b> incluem a melhoria no acesso a conteúdos educacionais, o fomento ao aprendizado colaborativo e a criação de uma comunidade de estudantes engajados. Espera-se que a plataforma contribua para a revisão de conteúdo estudado pelos profissionais e facilitar a continuidade dos estudos mesmo após a conclusão da graduação.</p>
+                    </div>
+                    <div class="mb-4" id="equipe">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">Equipe</h3>
+                        <p class="mb-2">A equipe do projeto <b>ARCHIVUM</b> é composta por alunos do Eixo da Computação da Universidade UNIVESP, que compõe o grupo DRP01-PJI410-A2026S2N3-GRUPO-019. Os membros da equipe são:</p>
+                        <ul class="list-disc list-inside mb-2">
+                            <li>EDUARDO GOMES CORREIA</li>
+                            <li>EDUARDO ROSA DA SILVA</li>
+                            <li>GABRIEL CRISTIANO FERREIRA</li>
+                            <li>KARINA FERREIRA DE AGUIAR MIRANDA</li>
+                            <li>KELLER VASCONCELOS MADEIRA</li>
+                            <li>PAMELA DA SILVA</li>
+                            <li>MARCELO PEZZOTTI DA SILVA</li>
+                            <li>RAFAEL VIANA SALES</li>
+                        </ul>
+                        <p>Juntos, esses alunos desenvolveram e aprimorar a plataforma, buscando sempre atender ao desafio proposto e promover um ambiente de aprendizado eficiente e colaborativo. Em conjunto com o orientador DAVI ALEX NOGUEIRA.</p>
+                    </div>
+                    <div class="mb-4" id="empresa-instituicao">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">Empresa / Instituição</h3>
+                        <p class="mb-2">A empresa responsável pelo projeto ARCHIVUM é o DCE.</p>
+                        <p class="mb-2">Você sabe o que é o DCE?</p> 
+                        <p class="mb-2">O <b>DCE (Diretório Central dos Estudantes)</b> é uma entidade feita por e para estudantes da Universidade UNIVESP, atuando na defesa dos direitos e interesses dos alunos da nossa instituição.</p>
+                        <p class="mb-2">Presidente: <b>CRISTIANE SOARES DE OLIVEIRA</b></p>
+                        <p class="mb-2">Vice-Presidente: <b>RAFAEL VILARINHO</b></p>
+                        <p class="mb-2">Se você é estudante da UNIVESP e/ou deseja saber mais sobre o DCE, entre em contato conosco através dos canais abaixo ou nos siga:</p>
+                        <p><a href="https://www.instagram.com/dceunivesp/" target="_blank" class="d-inline-flex align-items-center gap-2"><i class="bi bi-instagram" style="font-size: 1.3em; color: #C13584;"></i><b>Instagram</b></a></p>
+                        <p><a href="https://www.youtube.com/@dceunivesp" target="_blank" class="d-inline-flex align-items-center gap-2"><i class="bi bi-youtube" style="font-size: 1.3em; color: #FF0000;"></i><b>YouTube</b></a></p>
+                        <p><a href="https://discord.gg/dceunivesp" target="_blank" class="d-inline-flex align-items-center gap-2"><i class="bi bi-discord" style="font-size: 1.3em; color: #5865F2;"></i><b>Discord</b></a></p>
+                        <p><a href="https://t.me/dceunivesp" target="_blank" class="d-inline-flex align-items-center gap-2"><i class="bi bi-telegram" style="font-size: 1.3em; color: #26A5E4;"></i><b>Telegram</b></a></p>
+                        <p><a href="https://wa.me/5511999999999" target="_blank" class="d-inline-flex align-items-center gap-2"><i class="bi bi-whatsapp" style="font-size: 1.3em; color: #25D366;"></i><b>Grupo WhatsApp</b></a></p>
+                        <p><a href="https://twitter.com/dceunivesp" target="_blank" class="d-inline-flex align-items-center gap-2"><i class="bi bi-twitter" style="font-size: 1.3em; color: #1DA1F2;"></i><b>Twitter</b></a></p>
+                        <p><a href="https://www.facebook.com/dceunivesp" target="_blank" class="d-inline-flex align-items-center gap-2"><i class="bi bi-facebook" style="font-size: 1.3em; color: #1877F3;"></i><b>Facebook</b></a></p>
+                        <p><a href="mailto:dce@univesp.br" class="d-inline-flex align-items-center gap-2"><i class="bi bi-envelope-fill" style="font-size: 1.3em; color: #0a58ca;"></i><b>Email</b></a></p>
+                        <p><a href="https://teams.microsoft.com/l/chat/19:1d148f1d-3ad1-4d69-9257-99955b7e59ba_c44b18ea-c43f-414a-89f6-bf40b7df0d27@unq.gbl.spaces/conversations?context=%7B%22contextType%22%3A%22chat%22%7D" target="_blank" class="d-inline-flex align-items-center gap-2"><i class="bi bi-microsoft" style="font-size: 1.3em; color: #6264A7;"></i><b>Microsoft Teams</b></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white mt-auto py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <h5>LINKS ÚTEIS</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.univesp.br/" class="text-white text-decoration-none" target="_blank">UNIVESP</a></li>
+                        <li><a href="#" class="text-white text-decoration-none" target="_blank">Apresentação Youtube</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>DASHBOARD</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="dashboard.html" class="text-white text-decoration-none">Dashboard Analítico</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>BIBLIOTECAS</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.w3schools.com/html/" class="text-white text-decoration-none" target="_blank">W3Schools</a></li>
+                        <li><a href="https://www.bootstrapcdn.com/" class="text-white text-decoration-none" target="_blank">Bootstrap</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>PROJETO</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://github.com/RosaMaster/projeto-integrador-ii" class="text-white text-decoration-none" target="_blank">Repositório</a></li>
+                        <li><a href="https://rosamaster.github.io/" class="text-white text-decoration-none" target="_blank">GitHub Pages</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3 text-white">
+            <b>A R C H I V U M</b> © 2026 Copyright
+        </div>
+    </footer>
+
+    <!-- SCRIPT JS -->
+    <script src="enviroments_config.js"></script>
+    <script src="javascript/supabaseService.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
 </html>

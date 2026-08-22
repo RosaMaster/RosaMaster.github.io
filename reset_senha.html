@@ -4,52 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Senha - Portal</title>
-    <!-- Caminho relativo para a sua imagem local -->
-    <link rel="icon" type="image/png" href="assets/image/Logo01.png">
+    <!-- Caminho relativo para a imagem local -->
+    <link rel="icon" type="image/png" href="img/Logo01.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/styles.css">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .help-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 18px;
-            height: 18px;
-            margin-left: 4px;
-            padding: 0;
-            border: 0;
-            border-radius: 50%;
-            background-color: #1769c2;
-            color: #fff;
-            font-size: 12px;
-            font-weight: bold;
-            line-height: 1;
-            vertical-align: middle;
-            cursor: help;
-        }
-        .help-button:hover,
-        .help-button:focus-visible {
-            background-color: #0d4f94;
-        }
     </style>
 </head>
-<body>
-    <div>
-        <!-- Link para o arquivo HTML da página inicial -->
-        <a href="index.html" class="flex items-center justify-center">
-            <!-- Caminho relativo para a sua imagem local -->
-            <img src="img/Logo01_sem_fundo.png" alt="Logo sem texto" style="width:300px; height:300px; object-fit:contain; background:transparent; margin-right:10px;">
-        </a>
-    </div>
-    
-    <div class="bg-white p-8 pt-0 -mt-4 rounded-2xl shadow-xl w-full max-w-md mx-auto">
-        <h1 class="text-3xl font-bold text-center text-slate-800 mb-2">Recuperar Senha</h1><br>
-        <p class="text-sm text-center text-slate-600 mb-6">Confirme seus dados abaixo. geraremos uma nova senha nessa mesma tela.</p><br>
-        <!-- Formulário atualizado com os 3 campos -->
-        <form id="reset-form" class="space-y-4">
+<body class="d-flex flex-column min-vh-100">
 
+    <!-- HEADER PADRÃO UNIFICADO -->
+    <header class="shadow-sm mb-1" style="background-color: rgba(34, 40, 49, 1.0); border: 1px solid #222831; padding-top: 4px; padding-bottom: 4px;">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- Logo e Título com espaçamento fixo -->
+            <div class="d-flex align-items-center gap-2">
+                <a href="index.html" class="text-decoration-none">
+                    <img src="img/Logo01_sem_fundo.png" alt="Logo ARCHIVUM" style="width:130px; height:130px; object-fit:contain; background:transparent;">
+                </a>
+                <h1 class="h3 mb-0 text-white" style="font-size: 2.5rem; font-weight: bold; letter-spacing: 2px;">ARCHIVUM</h1>
+            </div>
+            
+            <!-- Navegação padrão -->
+            <nav class="d-flex align-items-center" style="font-size: 1.25rem; gap: 1.5rem;">
+                <a href="index.html" class="text-decoration-none text-primary"><b>HOME</b></a>
+                <a href="politica_termos.html" class="text-decoration-none text-secondary"><b>TERMOS DE USO</b></a>
+                <a href="cadastro.html" class="btn btn-success" style="font-size: 1rem;"><b>CADASTRO</b></a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- CONTEÚDO PRINCIPAL DE RECUPERAÇÃO -->
+    <div class="container-padrao bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-auto mt-5 mb-5">
+        <h1 class="text-3xl font-bold text-center text-slate-800 mb-2">Recuperar Senha</h1>
+        <p class="text-sm text-center text-slate-600 mb-6">Confirme seus dados abaixo. Geraremos uma nova senha nesta mesma tela[cite: 10].</p>
+        
+        <!-- Formulário restrito a RA, Nome Completo e E-mail -->
+        <form id="reset-form" class="space-y-4">
             <div>
                 <label for="ra" class="block text-sm font-medium text-slate-700">Registro Acadêmico (RA): <button type="button" class="help-button" title="Informe o número do seu Registro Acadêmico (RA)." aria-label="Ajuda sobre Registro Acadêmico">?</button></label>
                 <input type="text" id="ra" name="ra" placeholder="Digite seu RA" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
@@ -61,26 +57,26 @@
             </div>
 
             <div>
-                <label for="username" class="block text-sm font-medium text-slate-700">Username: <button type="button" class="help-button" title="Informe o mesmo nome de usuário usado no cadastro." aria-label="Ajuda sobre Username">?</button></label>
-                <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
-            </div>
-
-            <div>
                 <label for="email" class="block text-sm font-medium text-slate-700">E-mail: <button type="button" class="help-button" title="Informe o mesmo endereço de e-mail usado no cadastro." aria-label="Ajuda sobre E-mail">?</button></label>
                 <input type="email" id="email" name="email" placeholder="seu@email.com" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
             </div>
             
-            <!-- Div de erro oculta por padrão (classe 'hidden') -->
+            <!-- Div de erro oculta por padrão -->
             <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative text-sm" role="alert">
-                <span class="block sm:inline" id="error-text">Os dados informados não conferem. Verifique e tente novamente.</span>
+                <span class="block sm:inline" id="error-text">Os dados informados não conferem. Verifique e tente novamente[cite: 10].</span>
             </div>
 
-            <!-- Div de sucesso oculta por padrão (classe 'hidden') -->
-            <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded relative text-sm" role="alert">
-                <span class="block sm:inline" id="success-text">Link de recuperação enviado com sucesso! Verifique sua caixa de entrada.</span>
+            <!-- Caixa de Exibição da Nova Senha Gerada (oculta por padrão) -->
+            <div id="success-box" class="hidden bg-green-50 border border-green-300 p-4 rounded-md text-sm space-y-2">
+                <p class="font-semibold text-green-800">Nova senha gerada e salva com sucesso!</p>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="nova-senha-input" readonly class="w-full px-3 py-1 bg-white border border-green-300 rounded font-mono text-center font-bold text-slate-800">
+                    <button type="button" id="btn-copiar" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-bold transition">Copiar</button>
+                </div>
+                <p class="text-xs text-green-700">Guarde sua nova senha em local seguro. Você já pode usá-la para fazer login[cite: 10].</p>
             </div>
             
-            <div class="pt-2">
+            <div class="pt-2" id="div-botao">
                 <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
                     Gerar Nova Senha
                 </button>
@@ -94,8 +90,120 @@
         </div>
     </div>
 
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white mt-auto py-4">
+        <div class="text-center p-3 text-white">
+            <b>A R C H I V U M</b> © 2026 Copyright
+        </div>
+    </footer>
+
     <!-- SCRIPT JS -->
     <script src="enviroments_config.js"></script>
     <script src="javascript/supabaseService.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const resetForm = document.getElementById("reset-form");
+            const errorMessage = document.getElementById("error-message");
+            const errorText = document.getElementById("error-text");
+            const successBox = document.getElementById("success-box");
+            const novaSenhaInput = document.getElementById("nova-senha-input");
+            const btnCopiar = document.getElementById("btn-copiar");
+
+            function gerarSenhaForte() {
+                const maiusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                const minusculas = "abcdefghijklmnopqrstuvwxyz";
+                const numeros = "0123456789";
+                const especiais = "@#$*!";
+
+                let senha = "";
+                senha += maiusculas[Math.floor(Math.random() * maiusculas.length)];
+                senha += numeros[Math.floor(Math.random() * numeros.length)];
+                senha += especiais[Math.floor(Math.random() * especiais.length)];
+
+                const todos = maiusculas + minusculas + numeros + especiais;
+                for (let i = 0; i < 9; i++) {
+                    senha += todos[Math.floor(Math.random() * todos.length)];
+                }
+                return senha;
+            }
+
+            resetForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const raInput = document.getElementById("ra").value.trim();
+                const nomeInput = document.getElementById("nome").value.trim();
+                const emailInput = document.getElementById("email").value.trim();
+
+                errorMessage.classList.add("hidden");
+                successBox.classList.add("hidden");
+
+                try {
+                    const response = await fetch(`${VARIABLES_CONFIG.url}${VARIABLES_CONFIG.tabela_usuario}?registro_academico=eq.${raInput}&select=*`, {
+                        method: 'GET',
+                        headers: {
+                            'apikey': VARIABLES_CONFIG.anonKey,
+                            'Authorization': `Bearer ${VARIABLES_CONFIG.anonKey}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    const usuarios = await response.json();
+
+                    if (usuarios && usuarios.length > 0) {
+                        const usuario = usuarios[0];
+
+                        if (
+                            usuario.nome_completo.toLowerCase() === nomeInput.toLowerCase() &&
+                            usuario.email.toLowerCase() === emailInput.toLowerCase()
+                        ) {
+                            const novaSenha = gerarSenhaForte();
+
+                            const updateResponse = await fetch(`${VARIABLES_CONFIG.url}${VARIABLES_CONFIG.tabela_usuario}?registro_academico=eq.${raInput}`, {
+                                method: 'PATCH',
+                                headers: {
+                                    'apikey': VARIABLES_CONFIG.anonKey,
+                                    'Authorization': `Bearer ${VARIABLES_CONFIG.anonKey}`,
+                                    'Content-Type': 'application/json',
+                                    'Prefer': 'return=minimal'
+                                },
+                                body: JSON.stringify({ password: novaSenha })
+                            });
+
+                            if (updateResponse.ok) {
+                                resetForm.reset();
+                                novaSenhaInput.value = novaSenha;
+                                successBox.classList.remove("hidden");
+                            } else {
+                                errorText.textContent = "Erro ao atualizar a senha no servidor. Tente novamente.";
+                                errorMessage.classList.remove("hidden");
+                            }
+
+                        } else {
+                            errorText.textContent = "Os dados informados (Nome Completo ou E-mail) não conferem com este RA.";
+                            errorMessage.classList.remove("hidden");
+                        }
+                    } else {
+                        errorText.textContent = "Registro Acadêmico (RA) não encontrado no sistema[cite: 10].";
+                        errorMessage.classList.remove("hidden");
+                    }
+                } catch (error) {
+                    console.error("Erro no processo de reset:", error);
+                    errorText.textContent = "Erro de conexão com o servidor.";
+                    errorMessage.classList.remove("hidden");
+                }
+            });
+
+            btnCopiar.addEventListener("click", () => {
+                novaSenhaInput.select();
+                navigator.clipboard.writeText(novaSenhaInput.value);
+                btnCopiar.textContent = "Copiado!";
+                setTimeout(() => {
+                    btnCopiar.textContent = "Copiar";
+                }, 2000);
+            });
+        });
+    </script>
 </body>
 </html>

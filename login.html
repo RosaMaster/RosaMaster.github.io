@@ -4,30 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Portal</title>
-    <!-- Caminho relativo para a sua imagem local -->
+    <!-- Caminho relativo para a imagem local -->
     <link rel="icon" type="image/png" href="img/Logo01.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/styles.css">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body>
-    <div>
-        <!-- Link para o arquivo HTML da página inicial -->
-        <a href="index.html" class="flex items-center justify-center">
-            <!-- Caminho relativo para a sua imagem local, mantendo estilos originais -->
-            <img src="img/Logo01_sem_fundo.png" alt="Logo sem texto" style="width:300px; height:300px; object-fit:contain; background:transparent; margin-right:10px;">
-        </a>
-    </div>
-    <div class="bg-white p-8 pt-0 -mt-4 rounded-2xl shadow-xl w-full max-w-md mx-auto">
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- HEADER PADRÃO UNIFICADO -->
+    <header class="shadow-sm mb-1" style="background-color: rgba(34, 40, 49, 1.0); border: 1px solid #222831; padding-top: 4px; padding-bottom: 4px;">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- Logo e Título com espaçamento fixo -->
+            <div class="d-flex align-items-center gap-2">
+                <a href="index.html" class="text-decoration-none">
+                    <img src="img/Logo01_sem_fundo.png" alt="Logo ARCHIVUM" style="width:130px; height:130px; object-fit:contain; background:transparent;">
+                </a>
+                <h1 class="h3 mb-0 text-white" style="font-size: 2.5rem; font-weight: bold; letter-spacing: 2px;">ARCHIVUM</h1>
+            </div>
+            
+            <!-- Navegação padrão -->
+            <nav class="d-flex align-items-center" style="font-size: 1.25rem; gap: 1.5rem;">
+                <a href="index.html" class="text-decoration-none text-primary"><b>HOME</b></a>
+                <a href="politica_termos.html" class="text-decoration-none text-secondary"><b>TERMOS DE USO</b></a>
+                <a href="cadastro.html" class="btn btn-success" style="font-size: 1rem;"><b>CADASTRO</b></a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL DE LOGIN -->
+    <div class="container-padrao bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-auto mt-5 mb-5">
         <h1 class="text-3xl font-bold text-center text-slate-800 mb-6">Login</h1>
         
         <!-- Formulário interceptado via JavaScript -->
         <form id="login-form" class="space-y-4">
             <div>
-                <label for="username" class="block text-sm font-medium text-slate-700">Usuário:</label>
+                <label for="username" class="block text-sm font-medium text-slate-700">RA (Registro Acadêmico):</label>
                 <input type="text" id="username" name="username" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
             </div>
             <div>
@@ -63,9 +82,17 @@
         </div>
     </div>
 
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white mt-auto py-4">
+        <div class="text-center p-3 text-white">
+            <b>A R C H I V U M</b> © 2026 Copyright
+        </div>
+    </footer>
+
     <!-- SCRIPT JS -->
     <script src="enviroments_config.js"></script>
     <script src="javascript/supabaseService.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -84,7 +111,7 @@
                 successMessage.classList.add("hidden");
 
                 try {
-                    const response = await fetch(`${VARIABLES_CONFIG.url}${VARIABLES_CONFIG.tabela_usuario}?user_name=eq.${usernameInput}&select=*`, {
+                    const response = await fetch(`${VARIABLES_CONFIG.url}${VARIABLES_CONFIG.tabela_usuario}?registro_academico=eq.${usernameInput}&select=*`, {
                         method: 'GET',
                         headers: {
                             'apikey': VARIABLES_CONFIG.anonKey,
@@ -107,6 +134,14 @@
                                 curso: usuario.nome_curso
                             }));
 
+                            await SupabaseService.registrarLog(
+                                usuario.registro_academico, 
+                                'LOGIN_SUCESSO', 
+                                null, 
+                                '200', 
+                                'Login realizado com sucesso no sistema.'
+                            );
+
                             successMessage.classList.remove("hidden");
 
                             setTimeout(() => {
@@ -117,7 +152,7 @@
                             errorMessage.classList.remove("hidden");
                         }
                     } else {
-                        errorText.textContent = "Usuário não encontrado.";
+                        errorText.textContent = "Registro Acadêmico (RA) não encontrado.";
                         errorMessage.classList.remove("hidden");
                     }
                 } catch (error) {

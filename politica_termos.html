@@ -4,47 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POLÍTICA E TERMOS DE USO</title>
-    <!-- Caminho relativo para imagem -->
     <link rel="icon" type="image/png" href="img/Logo01.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- Caminho relativo para o CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="css/mobile.css">
-    <!-- Tailwind CSS para os estilos de texto e container -->
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- HEADER -->
-    <header class="shadow-sm py-0 mb-1" style="background-color: rgba(34, 40, 49, 1.0); border-width: 1px; border-style: solid; border-color: #222831;">
+    <!-- HEADER PADRÃO UNIFICADO -->
+    <header class="shadow-sm mb-1" style="background-color: rgba(34, 40, 49, 1.0); border: 1px solid #222831; padding-top: 4px; padding-bottom: 4px;">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <!-- Logo -->
+            <!-- Logo e Título com espaçamento fixo -->
             <div class="d-flex align-items-center gap-2">
-                <a href="conteudo.html" class="text-decoration-none text-primary me-3">
-                    <img src="img/Logo01_sem_fundo.png" alt="Logo sem texto" style="width:150px; height:150px; object-fit:contain; background:transparent; margin-right:10px;">
+                <a href="index.html" class="text-decoration-none">
+                    <img src="img/Logo01_sem_fundo.png" alt="Logo ARCHIVUM" style="width:130px; height:130px; object-fit:contain; background:transparent;">
                 </a>
-                <h1 class="h3 mb-0 text-white" style="font-size: xxx-large;"><b>A R C H I V U M</b></h1>
+                <h1 class="h3 mb-0 text-white" style="font-size: 2.5rem; font-weight: bold; letter-spacing: 2px;">ARCHIVUM</h1>
             </div>
             
-            <!-- Navegação -->
-            <nav style="font-size: 1.35rem;">
-                <a href="index.html" class="text-decoration-none text-primary me-3"><b>HOME</b></a>
-                <!-- <a href="conteudo.html" class="text-decoration-none text-secondary me-3"><b>CONTEÚDO</b></a> -->
-                <!-- <a href="politica_termos.html" class="text-decoration-none text-secondary me-3"><b>TERMOS DE USO</b></a> -->
-                 <a href="cadastro.html" class="btn btn-success me-3" style="font-size: 1.1rem;"><b>CADASTRO</b></a>
-                <a href="login.html" class="btn btn-primary ms-2" style="font-size: 1.1rem;"><b>LOGIN</b></a>
+            <!-- Navegação padrão -->
+            <nav class="d-flex align-items-center" style="font-size: 1.25rem; gap: 1.5rem;">
+                <a href="index.html" class="text-decoration-none text-primary"><b>HOME</b></a>
+                <a href="politica_termos.html" class="text-decoration-none text-secondary"><b>TERMOS DE USO</b></a>
+                <a href="cadastro.html" class="btn btn-success" style="font-size: 1rem;"><b>CADASTRO</b></a>
+                <a href="login.html" class="btn btn-primary" style="font-size: 1rem;"><b>LOGIN</b></a>
             </nav>
         </div>
     </header>
 
-    <div class="container mx-auto max-w-3xl bg-white p-8 rounded-2xl shadow-xl mt-5">
+    <!-- Largura expandida para max-w-7xl com a classe .container-padrao -->
+    <div class="container-padrao bg-white p-8 rounded-2xl shadow-xl mt-5 mb-5">
         <br>
-        <h1 class="text-3xl font-bold mb-6 text-center">POLÍTICA E TERMOS DE USO</h1>
-
-        <p class="text-sm text-slate-600 text-center mb-8">Última atualização: 20 de Setembro de 2026</p>
+        <h1 class="text-3xl font-bold mb-2 text-center">POLÍTICA E TERMOS DE USO</h1>
+        <p class="text-sm text-slate-600 text-center mb-8">Última atualização: 22 de Setembro de 2026</p>
         
-        <section class="mb-6">
+        <section class="mt-6 mb-6">
             <h2 class="text-xl font-semibold mb-2">1.0 INFO</h2>
             <p class="text-slate-700 text-justify">Bem-vindo(a) ao Portal de Conteúdo, um espaço dedicado à disseminação de conhecimento e aprendizado, desenvolvido pelos alunos do Eixo da Computação da Universidade UNIVESP. Ao acessar e utilizar este Website, você concorda em cumprir e se submeter aos seguintes termos e condições de uso citados nos itens abaixo. Se você não concordar com qualquer parte destes termos e/ou políticas, não utilize este o Portal de Conteúdo.</p>
         </section>
@@ -123,6 +120,11 @@
         </section>
 
         <section class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">3.5 COLETA DE MÉTRICAS SISTÊMICAS E LOGS DE USUÁRIOS</h2>
+            <p class="text-slate-700 text-justify">Ao utilizar este Portal, o usuário concorda expressamente em colaborar com a captura de métricas de navegação, registros de eventos (logs) e interações acadêmicas. Esses dados são coletados de forma segura e utilizados exclusivamente para fins de análise de desempenho do sistema, evolução acadêmica do projeto e aprimoramento contínuo de novas funcionalidades.</p>
+        </section>
+
+        <section class="mb-6">
             <h2 class="text-xl font-semibold mb-2">4.0 ISENÇÃO DE RESPONSABILIDADE</h2>
             <p class="text-slate-700 text-justify">Este Portal de Conteúdo não se responsabiliza por qualquer dano, perda ou prejuízo resultante do uso ou da incapacidade de uso do conteúdo disponibilizado. O usuário é o único responsável por suas ações e decisões tomadas com base nas informações contidas neste Portal.</p>
         </section>
@@ -147,7 +149,7 @@
             <p class="text-slate-700 text-justify">Estes Termos de Uso são regidos e interpretados de acordo com as leis do país de origem Brasil. Qualquer disputa decorrente do uso do Portal de Conteúdo será submetida aos tribunais competentes do estado de São Paulo-SP, Brasil.</p>
         </section>
 
-        <div class="mt-8 text-center">
+        <div class="mt-16 text-center">
             <nav style="font-size: 1.5rem;">
                 <a href="index.html" class="btn btn-dark" style="font-size: 1.1rem;"><b>HOME</b></a>
             </nav>
@@ -165,6 +167,6 @@
     <!-- SCRIPT JS -->
     <script src="enviroments_config.js"></script>
     <script src="javascript/supabaseService.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
